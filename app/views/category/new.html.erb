@@ -1,0 +1,10 @@
+
+<div>
+<%=form_with Category: @category do |first|%>
+<%=first.label :category_name%>
+<%= first.text_field :category_name%>
+</div>
+<br>
+    <%=first.submit  "add new category"%>
+<%end%>
+</div>

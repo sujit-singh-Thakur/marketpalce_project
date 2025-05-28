@@ -1,0 +1,12 @@
+<h1>Workers dashboard</h1>
+
+
+
+
+<% @all_task.each do |first|%>
+description <%= first.description%><br>
+name of category: <%= first.category_id%><br>
+<%= link_to "apply for job" , new_application_url%>
+<br>
+<br>
+<%end%>

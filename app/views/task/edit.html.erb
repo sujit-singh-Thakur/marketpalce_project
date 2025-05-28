@@ -1,0 +1,31 @@
+<h1>Task#new</h1>
+<p>Find me in app/views/task/new.html.erb</p>
+
+<h1> edit information</h1>
+
+<%= form_with Task: @task do |first|%>
+
+<div>
+<%=first.label :description%><br>
+<%=first.text_field :description%>
+</div>
+<br>
+<div>
+<%=first.label :contact_info%><br>
+<%=first.text_field :contact_info%>
+</div>
+<br>
+<div>
+<%=first.label :category_id,"Category"%><br>
+<%=first.collection_select :category_id, Category.all, :id, :category_name %>
+</div>
+<br>
+<div>
+<%=first.label :contractor_id,"Contractor"%><br>
+ <%=first.collection_select :contractor_id, Contractor.all, :id, :name %> 
+</div>
+<br>
+<%= first.submit "update task"%>
+<%end%>
+
+ 

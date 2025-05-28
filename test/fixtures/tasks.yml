@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  contact_info: MyString
+  category: one
+  contractor: one
+
+two:
+  description: MyText
+  contact_info: MyString
+  category: two
+  contractor: two

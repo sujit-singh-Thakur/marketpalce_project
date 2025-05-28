@@ -1,0 +1,16 @@
+<h1>Contractor dashboard</h1>
+
+
+<%= link_to "Add new task",new_task_url %><br>
+<%= link_to "Add new category",new_category_url %>
+
+<br>
+<br>
+
+<% @all_contractor.each do |first|%>
+description <%= first.description%><br>
+name of category: <%= first.category_id%><br>
+<%# <%=link_to "Edit",edit_task_url(@task) %>
+<br>
+<br>
+<%end%>

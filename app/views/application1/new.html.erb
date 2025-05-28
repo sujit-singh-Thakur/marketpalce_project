@@ -1,0 +1,36 @@
+
+<%= form_with Application: @application do |first|%>
+
+<div>
+<%=first.label :task_id,"Task"%><br>
+<%=first.collection_select :task_id, Task.all, :id, :description %> 
+</div>
+<br>
+<div>
+<%=first.label :worker_id,"Worker"%><br>
+ <%=first.collection_select :workers_id, Worker.all, :id, :name %> 
+</div>
+<br>
+
+<div>
+<%=first.label :status%><br>
+<%=first.text_field :status%>
+</div>
+<br>
+<div>
+<%=first.label :email%><br>
+<%=first.email_field :email%>
+</div>
+<br>
+<div>
+<%=first.label :contact_number%><br>
+<%=first.telephone_field :contact_number%>
+</div>
+<br>
+<div>
+<%=first.label :address%><br>
+<%=first.text_field :address%>
+</div>
+<br>
+<%= first.submit "apply "%>
+<%end%>
