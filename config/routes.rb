@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get "dashboard/index"
+  end
   # get "application1/index"
   # get "category/form"
   # get "worker/home"
@@ -36,6 +39,19 @@ Rails.application.routes.draw do
   # get "/edit_task" => 'task#edit'
    get 'tasks/:id/edit', to: 'task#edit', as: 'edit_task'
   # patch 'tasks/:id/edit', to: 'task#edit', as: 'edit_task'
+
+
+
+  namespace :admin do
+  root to: "dashboard#index"
+  
+  resources :users, only: [:index, :show, :destroy]
+  resources :tasks, only: [:index, :show, :destroy]
+  resources :categories, only: [:index, :show, :destroy]
+end
+
+
+
  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
