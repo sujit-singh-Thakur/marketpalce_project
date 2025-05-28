@@ -1,0 +1,25 @@
+<h1>All Tasks</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Contractor</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.description %></td>
+         <td><%= task.contractor.name if task.contractor %></td>
+        #  <td><%= task.user.name if task.user %></td>
+        <td><%= task.category.name if task.category %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_task_path(task) %> |
+          <%= link_to 'Delete', admin_task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
