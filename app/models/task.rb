@@ -1,4 +1,4 @@
 class Task < ApplicationRecord
   belongs_to :category
-  belongs_to :contractor,class_name: "User",optional: true
+  belongs_to :contractor,class_name: "User"
 end
