@@ -9,7 +9,7 @@
 
 <% @all_contractor.each do |first|%>
 description <%= first.description%><br>
-name of category: <%= first.category_id%><br>
+name of category: <%= first.category.category_name%><br>
 <%# <%=link_to "Edit",edit_task_url(@task) %>
 <br>
 <br>

@@ -2,7 +2,10 @@ class UserController < ApplicationController
   def index
     @users = User.all
   end
-
+  def home
+    redirect_to  new_person_session_url
+  end
+                      
   def new
     @user = User.new
   end

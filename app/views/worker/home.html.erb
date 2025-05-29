@@ -1,12 +1,19 @@
 <h1>Workers dashboard</h1>
 
+<%= form_with Task: @search do|first|%>
+<%= first.label :search_category_name%>
+<%= first.text_field :category_name%>
+<%= first.submit "search"%>
+<%end%>
 
-
+<br>
+<br>
 
 <% @all_task.each do |first|%>
-description <%= first.description%><br>
-name of category: <%= first.category_id%><br>
+task_name =: <%= first.description%><br>
+category_name := <td><%= first.category.category_name if first.category %></td><br>
 <%= link_to "apply for job" , new_application_url%>
 <br>
 <br>
 <%end%>
+

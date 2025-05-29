@@ -3,20 +3,21 @@
   <thead>
     <tr>
       <th>Description</th>
-      <th>Contractor</th>
+      <th>contact_info</th>
       <th>Category</th>
-      <th>Actions</th>
+      <th>contractor_name</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.description %></td>
-         <td><%= task.contractor.name if task.contractor %></td>
-        #  <td><%= task.user.name if task.user %></td>
-        <td><%= task.category.name if task.category %></td>
+        <td><%= task.contact_info %></td>
+         <td><%= task.category.category_name if task.contractor %></td>
+        <td><%= task.contractor.name if task.category %></td>
         <td>
-          <%= link_to 'Edit', edit_admin_task_path(task) %> |
+          <%= link_to 'Edit', edit_admin_task_url(task),method: :PUT  %>
           <%= link_to 'Delete', admin_task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>

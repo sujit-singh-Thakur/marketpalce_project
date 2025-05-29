@@ -1,2 +1,20 @@
 <h1>Task#index</h1>
 <p>Find me in app/views/task/index.html.erb</p>
+<h2>Worker Task Dashboard</h2>
+
+<%= form_with url: tasks_path, method: :get, local: true do |form| %>
+  <div>
+    <%= form.text_field :category_name, placeholder: "Search by task name" %>
+    <%# <%= form.select :status, options_for_select([['All', 'all'], ['Pending', 'pending'], ['In Progress', 'in_progress'], ['Completed', 'completed']], selected: params[:status]) %> 
+    <%= form.submit "Filter" %>
+  </div>
+<% end %>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <strong><%= task.category_id %></strong> 
+    </li>
+  <% end %>
+</ul>
+

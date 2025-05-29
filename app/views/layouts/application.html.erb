@@ -23,6 +23,19 @@
   </head>
 
   <body>
+        <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+       <% if person_signed_in?%>
+       Logged in as <strong><%= current_person.email%></strong>.
+       <%= link_to "edit profile" ,  edit_person_registration_path, :class=>'navbar-link'%>
+       <%= link_to "logout" ,  destroy_person_session_path,method: :delete, :class=>'navbar-link'%>
+       <%else%>
+     <%= link_to "sign_up" , new_person_registration_path, :class=>'navbar-link'%>
+     <%= link_to "login" , new_person_session_path, :class=>'navbar-link'%>
+       <%end%>
+
+       
+
     <%= yield %>
   </body>
 </html>

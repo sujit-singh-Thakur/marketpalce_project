@@ -1,10 +1,9 @@
-<h1>Admin::Dashboard#index</h1>
-<p>Find me in app/views/admin/dashboard/index.html.erb</p>
+
 
 <h1>Admin Dashboard</h1>
-<p>Total Users: <%= @user_count %></p>
-<p>Total Tasks: <%= @task_count %></p>
-<p>Total Categories: <%= @category_count %></p>
+<p>Total Users: <%= User.all.count%></p>
+<p>Total Tasks: <%= Task.all.count%></p>
+<p>Total Categories: <%= Category.all.count %></p>
 
 <ul>
   <li><%= link_to 'Manage Users', admin_users_path %></li>
