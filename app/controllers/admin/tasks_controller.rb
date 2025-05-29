@@ -2,13 +2,15 @@ class Admin::TasksController < ApplicationController
      before_action :set_task, only: %i[show edit update destroy]
 
   def index
-    @tasks = Task.includes(:user, :category)
-    # @tasks = Task.all
+     @tasks = Task.includes(:contractor, :category)
+    #  @tasks = Task.all
   end
 
   def show; end
 
-  def edit; end
+  def edit
+    
+  end
 
   def update
     if @task.update(task_params)
@@ -19,7 +21,7 @@ class Admin::TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
+    @task.delete
     redirect_to admin_tasks_path, notice: "Task deleted."
   end
 
@@ -30,6 +32,6 @@ class Admin::TasksController < ApplicationController
   end
 
   def task_params
-    params.expect(:task [:description, :contact_info, :category_id])
+    params.expect(:task [:description, :contact_info, :category_id,:contractor_id])
   end
 end
