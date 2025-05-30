@@ -1,5 +1,7 @@
 <h1>All Categories</h1>
 <%= link_to 'Add New Category', new_category_url %>
+<br>
+<br>
 <table>
   <thead>
     <tr>
@@ -8,11 +10,12 @@
     </tr>
   </thead>
   <tbody>
+
     <% @categories.each do |category| %>
       <tr>
         <td><%= category.category_name %></td>
-        <td><%= link_to 'Delete', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <%# <td><%= link_to 'Delete', admin_category_path(category.id), method: :delete, data: { confirm: 'Are you sure?' } %></td> 
+      <td> <%= button_to 'Destroy', admin_category_path(category.id), method: :delete, :onclick => "return confirm('Are you sure you want to delete this post?')" %></td>
     <% end %>
   </tbody>
 </table>

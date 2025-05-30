@@ -44,18 +44,31 @@ Rails.application.routes.draw do
   # patch 'tasks/:id/edit', to: 'task#edit', as: 'edit_task'
 
 
+  namespace :user do
+  
+    resources :contractors, only: [ :index, :show,:edit,:update, :destroy ]
+    resources :workers, only: [ :index, :show,:edit,:update, :destroy ]
+
+  end
 
   namespace :admin do
   root to: "dashboard#index"
 
   resources :users, only: [ :index, :show, :destroy ]
-  resources :tasks, only: [ :index, :show, :destroy ]
-  resources :categories, only: [ :index, :show, :destroy ]
+  resources :tasks, only: [ :index, :show,:edit,:update, :destroy ]
+  resources :categories, only: [ :index, :show,:edit, :update, :destroy ]
 end
 
 # resources :tasks, only: [ :index ]
 get "/tasks" => "task#index"
 
+# searching task
+get '/search_category' => "tasks#search"
+
+
+  resources :tasks do
+    get 'search', on: :collection # Add the search action to the tasks resources
+  end
 
 
 devise_for :person, path: '', path_names: {

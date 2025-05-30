@@ -3,9 +3,10 @@ class UserController < ApplicationController
     @users = User.all
   end
   def home
-    redirect_to  new_person_session_url
+    redirect_to  new_person_registration_url
   end
-                      
+                   
+  
   def new
     @user = User.new
   end
@@ -38,6 +39,7 @@ def create
   end
   
 end
+
 
 
 

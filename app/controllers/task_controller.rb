@@ -1,9 +1,19 @@
 class TaskController < ApplicationController
   def index
     @tasks = Task.all
-    .search_by_name(params[:search])
-    .filter_by_status(params[:status])
   end
+  def search
+    @tasks = Task.all # Fetch all tasks
+    if params[:category].present?
+      @tasks = @tasks.where(category_id: params[:category]) # Filter by category
+      # Prioritize tasks from the matching category
+      @prioritized_tasks = @tasks.where(category_id: params[:category])
+      @other_tasks = @tasks.where.not(category_id: params[:category])
+      @tasks = @prioritized_tasks.to_a + @other_tasks.to_a
+      redirect_to search_category_url
+    end
+  end
+
   def new
     @task = Task.new
   end

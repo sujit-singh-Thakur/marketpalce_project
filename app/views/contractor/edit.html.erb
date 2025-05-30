@@ -1,9 +1,9 @@
-<h1>Task#edit</h1>
+<h1>Task#new</h1>
 <p>Find me in app/views/task/new.html.erb</p>
 
 <h1> edit information</h1>
 
-<%= form_with Task: @task do |first|%>
+<%= form_with Task: @task local: true do |first|%>
 
 <div>
 <%=first.label :description%><br>
@@ -27,7 +27,7 @@
 <br>
 <%# <%= first.submit "update task"%>  
 <td> <%= button_to 'Edit Task', edit_admin_task_url(first), method: :PATCH, :onclick => "return confirm('Are you sure you want to update this task?')" %></td>
-
+<td> <%= button_to 'back ', contractor_home_url(first) %>
 <%end%>
 
  
