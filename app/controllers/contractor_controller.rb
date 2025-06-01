@@ -1,33 +1,36 @@
 class ContractorController < ApplicationController
+  before_action :set_contractor, only: %i[show edit update destroy]
+
   def home
-    @all_contractor  = Task.includes(:category)
+    @all_contractor = User.where(type: 'Contractor').includes(:tasks => :category)
   end
+
   def show
-  @contractor = User.find(params[:id])
-end
+  end
 
-def destroy
-  @contractor = User.find(params[:id])
-  @contractor.destroy
-  redirect_to contractor_home_url, notice: 'User deleted'
-end
-def edit
-    
-end
+  def edit
+  end
 
-def update
-  if @task.update(task_params)
-    redirect_to admin_tasks_path, notice: "Task updated."
-  else
-    render :edit
+  def update
+    if @contractor.update(contractor_params)
+      redirect_to contractor_home_url, notice: "Contractor updated."
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @contractor.destroy
+    redirect_to contractor_home_url, notice: 'Contractor deleted.'
+  end
+
+  private
+
+  def set_contractor
+    @contractor = User.find(params[:id])
+  end
+
+  def contractor_params
+    params.require(:user).permit(:name, :email, :phone, :bio)
   end
 end
-
-def destroy
-  @task = Task.find(params[:id])
-  @task.delete
-  redirect_to admin_tasks_path, notice: "Task deleted."
-end
-
-end
-

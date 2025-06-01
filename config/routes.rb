@@ -13,6 +13,31 @@ Rails.application.routes.draw do
    root "user#home"
   # root to: "admin#index"
 
+  namespace :admin do
+  resources :tasks
+end
+
+resources :contractor, only: [:show, :edit, :update, :destroy] do
+  collection do
+    get 'home'
+  end
+end
+
+
+# config/routes.rb
+
+get  'worker/home',               to: 'worker#home',            as: 'worker_home'
+get  'worker/task/:id/apply',     to: 'worker#apply',           as: 'worker_apply_task'
+post 'worker/task/:id/apply',     to: 'worker#create_application', as: 'create_worker_application'
+
+
+
+# get 'worker/home', to: 'worker#home', as: 'worker_home'
+# get 'worker/apply/:id', to: 'worker#apply', as: 'worker_apply_task'
+
+
+
+
   get "/user_index" => "user#index"
 
   get "/user_profile" => "user#new"
@@ -44,12 +69,12 @@ Rails.application.routes.draw do
   # patch 'tasks/:id/edit', to: 'task#edit', as: 'edit_task'
 
 
-  namespace :user do
+  # namespace :user do
   
-    resources :contractors, only: [ :index, :show,:edit,:update, :destroy ]
-    resources :workers, only: [ :index, :show,:edit,:update, :destroy ]
+  #   resources :contractors, only: [ :index, :show,:edit,:update, :destroy ]
+  #   resources :workers, only: [ :index, :show,:edit,:update, :destroy ]
 
-  end
+  # end
 
   namespace :admin do
   root to: "dashboard#index"

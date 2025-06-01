@@ -1,10 +1,8 @@
-<br>
-<% @tasks.each do |task| %>
-      <tr>
-       task_name: =  <td><%= task.description %></td><br>
-        contact_info: = <td><%= task.contact_info %></td><br>
-        category_name: =  <td><%= task.category.category_name if task.contractor %></td><br>
-        contractor_name : = <td><%= task.contractor.name if task.category %></td><br>
-        <td>
-        <tr>
-            <%end%>
+<h1>Contractor Profile</h1>
+
+<p><strong>Name:</strong> <%= @contractor.name %></p>
+<p><strong>Email:</strong> <%= @contractor.email %></p>
+<p><strong>Phone:</strong> <%= @contractor.contact %></p>
+
+<%= link_to 'Edit', edit_contractor_path(@contractor) %> |
+<%= link_to 'Back', contractor_home_path %>

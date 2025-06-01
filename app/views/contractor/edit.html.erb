@@ -1,33 +1,29 @@
-<h1>Task#new</h1>
-<p>Find me in app/views/task/new.html.erb</p>
+<h1 style="text-align: center;">Edit Contractor</h1>
 
-<h1> edit information</h1>
+<div style="max-width: 500px; margin: 0 auto;">
+  <%= form_with model: @contractor, url: contractor_path(@contractor), local: true do |form| %>
+    <div style="margin-bottom: 15px;">
+      <%= form.label :name %><br>
+      <%= form.text_field :name, style: "width: 100%;" %>
+    </div>
 
-<%= form_with Task: @task local: true do |first|%>
+    <div style="margin-bottom: 15px;">
+      <%= form.label :email %><br>
+      <%= form.email_field :email, style: "width: 100%;" %>
+    </div>
 
-<div>
-<%=first.label :description%><br>
-<%=first.text_field :description%>
-</div>
-<br>
-<div>
-<%=first.label :contact_info%><br>
-<%=first.text_field :contact_info%>
-</div>
-<br>
-<div>
-<%=first.label :category_id,"Category"%><br>
-<%=first.collection_select :category_id, Category.all, :id, :category_name %>
-</div>
-<br>
-<div>
-<%=first.label :contractor_id,"Contractor"%><br>
- <%=first.collection_select :contractor_id, Contractor.all, :id, :name %> 
-</div>
-<br>
-<%# <%= first.submit "update task"%>  
-<td> <%= button_to 'Edit Task', edit_admin_task_url(first), method: :PATCH, :onclick => "return confirm('Are you sure you want to update this task?')" %></td>
-<td> <%= button_to 'back ', contractor_home_url(first) %>
-<%end%>
+    <div style="margin-bottom: 15px;">
+      <%= form.label :contact %><br>
+      <%= form.telephone_field :phone, style: "width: 100%;" %>
+    </div>
 
- 
+
+    <div style="text-align: center;">
+      <%= form.submit 'Update Contractor', style: "padding: 10px 20px;" %>
+    </div>
+  <% end %>
+
+  <div style="text-align: center; margin-top: 15px;">
+    <%= link_to 'Back', contractor_home_path %>
+  </div>
+</div>

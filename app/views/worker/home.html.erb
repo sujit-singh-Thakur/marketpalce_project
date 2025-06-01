@@ -1,19 +1,26 @@
-<h1>Workers dashboard</h1>
 
-<%= form_with Task: @search do|first|%>
-<%= first.label :search_category_name%>
-<%= first.text_field :category_name%>
-<%= first.submit "search"%>
-<%end%>
 
-<br>
-<br>
+<h1 style="text-align: center;">All Available Tasks</h1>
 
-<% @all_task.each do |first|%>
-task_name =: <%= first.description%><br>
-category_name := <td><%= first.category.category_name if first.category %></td><br>
-<%= link_to "apply for job" , new_application_url%>
-<br>
-<br>
-<%end%>
+<div style="text-align: center; margin-bottom: 20px;">
+  <%= form_with url: worker_home_path, method: :get, local: true do %>
+    <label for="category_id"><strong>Search by Category:</strong></label>
+    <%= select_tag :category_id,
+          options_from_collection_for_select(@categories, :id, :category_name, params[:category_id]),
+          prompt: "Select Category" %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
 
+<% if @all_task.any? %>
+  <% @all_task.each do |task| %>
+    <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 10px;">
+      <h2><%= task.description %></h2>
+      <p><strong>Contractor:</strong> <%= task.contractor.name %></p>
+      <p><strong>Category:</strong> <%= task.category.category_name %></p>
+      <%= link_to 'Apply', worker_apply_task_path(task), class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+<% else %>
+  <p style="text-align: center;">No tasks found for selected category.</p>
+<% end %>

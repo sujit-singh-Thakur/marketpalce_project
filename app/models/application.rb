@@ -1,4 +1,7 @@
 class Application < ApplicationRecord
-  belongs_to :task,optional: true
-  belongs_to :workers,class_name: "User",optional: true
+  belongs_to :worker, class_name: "User", optional: true
+  belongs_to :task
+
+  # enum status: { accepted: 1}
+
 end

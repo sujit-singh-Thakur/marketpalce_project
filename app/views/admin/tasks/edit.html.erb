@@ -1,33 +1,35 @@
-<h1>Task#edit</h1>
-<p>Find me in app/views/task/new.html.erb</p>
+<h1 style="text-align: center;">Edit Task</h1>
 
-<h1> edit information</h1>
+<div style="max-width: 500px; margin: 0 auto;">
+  <%= form_with model: [:admin, @task], local: true do |form| %>
+    
+    <div style="margin-bottom: 15px;">
+      <%= form.label :description, "Description", style: "display: block; font-weight: bold; text-transform: capitalize;" %>
+      <%= form.text_field :description, style: "width: 100%; padding: 8px;" %>
+    </div>
 
-<%= form_with Task: @task do |first|%>
+    <div style="margin-bottom: 15px;">
+      <%= form.label :contact_info, "Contact Info", style: "display: block; font-weight: bold; text-transform: capitalize;" %>
+      <%= form.text_field :contact_info, style: "width: 100%; padding: 8px;" %>
+    </div>
 
-<div>
-<%=first.label :description%><br>
-<%=first.text_field :description%>
+    <div style="margin-bottom: 15px;">
+      <%= form.label :contractor_id, "Contractor", style: "display: block; font-weight: bold; text-transform: capitalize;" %>
+      <%= form.collection_select :contractor_id, Contractor.all, :id, :name, { prompt: "Select Contractor" }, { style: "width: 100%; padding: 8px;" } %>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <%= form.label :category_id, "Category", style: "display: block; font-weight: bold; text-transform: capitalize;" %>
+      <%= form.collection_select :category_id, Category.all, :id, :category_name, { prompt: "Select Category" }, { style: "width: 100%; padding: 8px;" } %>
+    </div>
+
+    <div style="text-align: center;">
+      <%= form.submit 'Update Task', style: "padding: 10px 20px; font-weight: bold; text-transform: uppercase; background-color: #007BFF; color: white; border: none; border-radius: 5px;" %>
+    </div>
+
+  <% end %>
+
+  <div style="text-align: center; margin-top: 15px;">
+    <%= link_to 'Back', admin_tasks_path, style: "text-decoration: none; color: #007BFF;" %>
+  </div>
 </div>
-<br>
-<div>
-<%=first.label :contact_info%><br>
-<%=first.text_field :contact_info%>
-</div>
-<br>
-<div>
-<%=first.label :category_id,"Category"%><br>
-<%=first.collection_select :category_id, Category.all, :id, :category_name %>
-</div>
-<br>
-<div>
-<%=first.label :contractor_id,"Contractor"%><br>
- <%=first.collection_select :contractor_id, Contractor.all, :id, :name %> 
-</div>
-<br>
-<%# <%= first.submit "update task"%>  
-<td> <%= button_to 'Edit Task', edit_admin_task_url(first), method: :PATCH, :onclick => "return confirm('Are you sure you want to update this task?')" %></td>
-
-<%end%>
-
- 
