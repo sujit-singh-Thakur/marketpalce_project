@@ -66,6 +66,9 @@ group :test do
   gem "devise" 
 gem 'devise-jwt'
 
+gem "cancancan", "~> 3.6"
+
+gem 'letter_opener'
+
 end
 
-gem "cancancan", "~> 3.6"

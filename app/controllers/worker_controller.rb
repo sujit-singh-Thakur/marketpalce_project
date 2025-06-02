@@ -20,11 +20,15 @@ class WorkerController < ApplicationController
 
   def create_application
     @application = Application.new(application_params)
-     @application.workers_id = current_person.id  
+    @application.workers_id = current_user.id
+
     @application.task_id = @task.id
 
     if @application.save
+      ApplicationMailer.worker_applied_email(@application).deliver_later
+ 
       redirect_to worker_home_path, notice: "Application submitted!"
+
     else
       render :apply, alert: "Something went wrong."
     end

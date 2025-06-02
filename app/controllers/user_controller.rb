@@ -2,16 +2,18 @@ class UserController < ApplicationController
   
   
   def index
-    @users = User.all
+
+     @users = User.all
   end
+  
   def home
-    redirect_to user_profile_url
-    #  redirect_to  new_person_registration_url unless person_signed_in?
+    
+    redirect_to new_user_registration_path
+   
   end
                    
   
   def new
-
     @user = User.new
   end
 
@@ -49,7 +51,8 @@ end
 
   private
   def param_data
-    params.expect(user: [:name, :email, :contact,:type])
+    params.require(:user).permit(:name,:email,:contact,:type)
+    # params.expect(user: [:name, :email, :contact,:type])
   end
   
 end

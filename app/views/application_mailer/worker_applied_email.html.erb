@@ -1,0 +1,16 @@
+<h2>Hello <%= @contractor.name %>,</h2>
+
+<p>
+  A new worker <strong><%= @worker.name %></strong> has applied for your task "<strong><%= @task.title %></strong>".
+</p>
+
+<p>Details:</p>
+<ul>
+  <li>Email: <%= @worker.email %></li>
+  <li>Contact: <%= @application.contact_number %></li>
+  <li>Address: <%= @application.address %></li>
+</ul>
+
+<p>Please review the application in your contractor dashboard.</p>
+
+<p>Thanks,<br>Your App Team</p>

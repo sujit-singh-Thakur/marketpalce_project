@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get "user/index"
   # get "task/index"
 
-  root to: "user#index"
+  root to: "user#home"
   #  root "user#home"
   # root to: "admin#index"
 
