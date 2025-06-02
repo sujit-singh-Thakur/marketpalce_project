@@ -1,4 +1,6 @@
 class WorkerController < ApplicationController
+  before_action :authenticate_person!
+
   before_action :set_task, only: %i[apply create_application]
 
   def home
@@ -18,7 +20,7 @@ class WorkerController < ApplicationController
 
   def create_application
     @application = Application.new(application_params)
-     @application.worker_id = current_user.id  # Ensure Devise or session-based login is present
+     @application.workers_id = current_person.id  
     @application.task_id = @task.id
 
     if @application.save

@@ -30,7 +30,9 @@ get  'worker/home',               to: 'worker#home',            as: 'worker_home
 get  'worker/task/:id/apply',     to: 'worker#apply',           as: 'worker_apply_task'
 post 'worker/task/:id/apply',     to: 'worker#create_application', as: 'create_worker_application'
 
-
+# devise_for :people, controllers: {
+#   sessions: 'person/sessions'
+# }
 
 # get 'worker/home', to: 'worker#home', as: 'worker_home'
 # get 'worker/apply/:id', to: 'worker#apply', as: 'worker_apply_task'
