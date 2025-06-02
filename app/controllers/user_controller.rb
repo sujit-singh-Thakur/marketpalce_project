@@ -1,14 +1,12 @@
 class UserController < ApplicationController
-  before_action :authenticate_person!
-
-  def after_sign_up_path_for(current_person)
-    redirect_to user_profile_url
-  end
+  
+  
   def index
     @users = User.all
   end
   def home
-     redirect_to  new_person_registration_url unless person_signed_in?
+    redirect_to user_profile_url
+    #  redirect_to  new_person_registration_url unless person_signed_in?
   end
                    
   

@@ -61,7 +61,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 
-  gem 'devise'
+  gem "bootsnap", require: false
+
+  gem "devise" 
 gem 'devise-jwt'
 
 end
+
+gem "cancancan", "~> 3.6"

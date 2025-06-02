@@ -23,18 +23,11 @@
   </head>
 
   <body>
-        <p class="notice"><%= notice %></p>
+    
+       <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
-       <% if person_signed_in?%>
-       Logged in as <strong><%= current_person.email%></strong>.
-       <%= link_to "edit profile" , edit_person_registration_path, :class=>'navbar-link'%>
-       <div> <%= button_to "logout",destroy_person_session_path, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
-       <%else%>
-     <%= link_to "sign_up" , new_person_registration_path, :class=>'navbar-link'%>
-     <%= link_to "login" , new_person_session_path, :class=>'navbar-link'%>
-       <%end%>
-
+     
        
 
     <%= yield %>

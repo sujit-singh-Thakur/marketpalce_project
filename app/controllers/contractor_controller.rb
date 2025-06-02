@@ -1,5 +1,9 @@
 class ContractorController < ApplicationController
-  before_action :set_contractor, only: %i[show edit update destroy]
+  
+
+  # def current_ability
+  #   @current_ability ||= Ability.new(current_person)
+  # end
 
   def home
     @all_contractor = User.where(type: 'Contractor').includes(:tasks => :category)

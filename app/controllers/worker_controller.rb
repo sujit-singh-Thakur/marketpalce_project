@@ -1,5 +1,5 @@
 class WorkerController < ApplicationController
-  before_action :authenticate_person!
+  # before_action :authenticate_person!
 
   before_action :set_task, only: %i[apply create_application]
 

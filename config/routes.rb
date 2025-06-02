@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # devise_for :people
   # namespace :admin do
   #   get "dashboard/index"
@@ -10,7 +11,8 @@ Rails.application.routes.draw do
   # get "user/index"
   # get "task/index"
 
-   root "user#home"
+  root to: "user#index"
+  #  root "user#home"
   # root to: "admin#index"
 
   namespace :admin do
@@ -98,11 +100,11 @@ get '/search_category' => "tasks#search"
   end
 
 
-devise_for :person, path: '', path_names: {
-    sign_in: 'login',
-    sign_out: 'logout',
-    registration: 'signup'
-   }
+# devise_for :person, path: '', path_names: {
+#     sign_in: 'login',
+#     sign_out: 'logout',
+#     registration: 'signup'
+#    }
 
   #  devise_scope :user do
   #   get '/logout', to: 'devise/sessions#destroy'
