@@ -13,7 +13,7 @@
 ActiveRecord::Schema[8.0].define(version: 2025_06_02_134313) do
   create_table "applications", force: :cascade do |t|
     t.integer "task_id", null: false
-    t.integer "workers_id"
+    t.integer "worker_id"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_02_134313) do
     t.integer "contact_number"
     t.string "address"
     t.index ["task_id"], name: "index_applications_on_task_id"
-    t.index ["workers_id"], name: "index_applications_on_workers_id"
+    t.index ["worker_id"], name: "index_applications_on_worker_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -56,6 +56,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_02_134313) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "applications", "tasks"
+  add_foreign_key "applications", "users", column: "worker_id"
   add_foreign_key "tasks", "categories"
   add_foreign_key "tasks", "users", column: "contractor_id"
 end

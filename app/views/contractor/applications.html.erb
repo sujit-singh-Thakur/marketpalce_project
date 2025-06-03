@@ -1,0 +1,17 @@
+    
+
+<h1>Applications to Your Tasks</h1>
+
+<% @applications.each do |app| %>
+  <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+    <p><strong>Worker:</strong> <%= app.worker.name %></p>
+    <p><strong>Task:</strong> <%= app.task.description %></p>
+    <p><strong>Status:</strong> <%= app.status.presence || 'Pending' %></p>
+
+    <% unless app.status.in?(%w[accepted rejected]) %>
+      <%= button_to 'Accept', update_application_status_path(app, status: 'accepted'), method: :patch %>
+      <%= button_to 'Reject', update_application_status_path(app, status: 'rejected'), method: :patch %>
+    <% end %>
+  </div>
+<% end %>
+

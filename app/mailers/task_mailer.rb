@@ -1,5 +1,14 @@
 class TaskMailer < ApplicationMailer
-  default from: 'no-reply@example.com'
+
+   default from: 'noreply@example.com'
+
+  def status_updated_email(application)
+    @worker = application.worker
+    @task = application.task
+    @status = application.status
+    mail(to: @worker.email, subject: "Your Application Has Been #{@status.capitalize}")
+  end
+
 
   def worker_applied_email(application)
     @application = application
@@ -12,14 +21,4 @@ class TaskMailer < ApplicationMailer
     )
   end
 
-  def worker_selected_email(worker, task)
-    @worker = worker
-    @task = task
-
-    mail(
-      to: @worker.email,
-      subject: "You've Been Selected for Task: #{@task.title}"
-    )
-    
-  end
 end

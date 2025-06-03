@@ -1,26 +1,22 @@
 
 
-<br>
-<br>
 <%= link_to "Add new task",new_task_url %><br><br>
 
 <%= link_to "Add new category",new_category_url %>
-<br>
-<h1 style="text-align: center;">All Contractors</h1>
+<br><br>
+<%= link_to "View Applications", contractor_applications_path %>
+<br><br>
 
-<% @all_contractor.each do |contractor| %>
+
+<h1 style="text-align: center;">My Tasks</h1>
+
+<% @tasks.each do |task| %>
   <div style="border: 1px solid #ccc; padding: 15px; margin: 10px;">
-    <h2><%= contractor.name %></h2>
-    <p><strong>Email:</strong> <%= contractor.email %></p>
-    <p><strong>Tasks:</strong></p>
-    <ul>
-      <% contractor.tasks.each do |task| %>
-        <li><%= task.description %> (Category: <%= task.category&.category_name %>)</li>
-      <% end %>
-    </ul>
-    <%= link_to 'Show', contractor_path(contractor) %> |
-    <%= link_to 'Edit', edit_contractor_path(contractor) %> |
-    <td><%= button_to 'Delete', contractor_path(contractor.id), method: :delete, :onclick => "return confirm('Are you sure you want to delete this task?')" %> </td>
-   </ul>
+    <h2><%= task.description %></h2>
+    <p><strong>Category:</strong> <%= task.category&.category_name %></p>
+
+    <%= link_to 'Edit', edit_task_path(task) %> |
+    <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
 <% end %>
+

@@ -1,12 +1,22 @@
 class ContractorController < ApplicationController
  
+    def applications
+     @applications = Application.includes(:task, :worker).where(tasks: { contractor_id: current_user.id })
+end
 
   def home
-    @all_contractor = User.where(type: 'Contractor').includes(:tasks => :category)
+     if current_user.type == 'Contractor'
+    @tasks = current_user.tasks.includes(:category)
+  else
+    redirect_to root_path, alert: "Access denied."
+  end
+    
+    # @all_contractor = User.where(type: 'Contractor').includes(:tasks => :category)
   end
 
   def show
-     @contractor = User.find(params[:id])
+    @contractor = User.find(params[:id])
+
   end
 
   def edit
@@ -19,6 +29,19 @@ class ContractorController < ApplicationController
       render :edit
     end
   end
+
+  def update_status
+  @application = Application.find(params[:id])
+  
+  if @application.update(status: params[:status])
+    # Send email to the worker
+    TaskMailer.status_updated_email(@application).deliver_now
+    redirect_to contractor_applications_path, notice: "Application #{params[:status].capitalize}!"
+  else
+    redirect_to contractor_applications_path, alert: "Failed to update application."
+  end
+end
+
 
   def destroy
     @contractor.destroy

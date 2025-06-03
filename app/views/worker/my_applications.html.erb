@@ -1,0 +1,9 @@
+<h1>My Applications</h1>
+
+<% @applications.each do |application| %>
+  <div style="border: 1px solid #ccc; padding: 15px; margin: 10px;">
+    <p><strong>Task:</strong> <%= application.task.description %></p>
+    <p><strong>Status:</strong> <%= application.status %></p>
+    <p><strong>Submitted on:</strong> <%= application.created_at.strftime("%d %b %Y") %></p>
+  </div>
+<% end %>

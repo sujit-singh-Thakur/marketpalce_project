@@ -17,32 +17,44 @@ class TaskController < ApplicationController
     @task = Task.new
   end
 
-  def create
-   # name = params[:name]
-   # contractor = Contractor.find_by(name: name)
-   # contractor = Contractor.find_by(contractor_id: contractor_name)
-   @task = Task.new(param_task={
-      description: params[:description],
-      contact_info: params[:contact_info],
-      category_id: params[:category_id],
-      contractor_id: params[:contractor_id]
-      })
-   # debugger
-   if @task.save
-    redirect_to contractor_home_url
-   else
-    render :new
-   end
-  end
+  # def create
+  #  @task = Task.new(param_task={
+  #     description: params[:description],
+  #     contact_info: params[:contact_info],
+  #     category_id: params[:category_id],
+  #     contractor_id: params[:contractor_id]
+  #     })
+  #  # debugger
+  #  if @task.save
+  #   redirect_to contractor_home_url
+  #  else
+  #   render :new
+  #  end
+  # end
 
   def edit
     @task = Task.find(params[:id])
   end
 
+  def create
+  @task = Task.new(
+    description: params[:task][:description],
+    contact_info: params[:task][:contact_info],
+    category_id: params[:task][:category_id],
+    contractor_id: current_user.id # ← assign contractor here
+  )
+
+  if @task.save
+    redirect_to contractor_home_url, notice: "Task created successfully."
+  else
+    render :new
+  end
+end
+
 
 
   private
   def param_task
-    params.expect(task: [ :description, :contact_info, :category_id, :contractor_id ])
+      params.require(:task).permit(:description, :contact_info, :category_id)
   end
 end
