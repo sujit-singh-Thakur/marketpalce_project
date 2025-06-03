@@ -1,6 +1,13 @@
 
 <div>
 <%=form_with Category: @category do |first|%>
+<% if @category.errors.any? %>
+    <ul>
+    <%= @category.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <%end%>
+    </ul>
+    <%end%>
 <%=first.label :category_name%>
 <%= first.text_field :category_name%>
 </div>

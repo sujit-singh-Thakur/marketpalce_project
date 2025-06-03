@@ -1,19 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # devise_for :people
-  # namespace :admin do
-  #   get "dashboard/index"
-  # end
-  # get "application1/index"
-  # get "category/form"
-  # get "worker/home"
-  # get "contractor/home"
-  # get "user/index"
-  # get "task/index"
+  
+
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+
 
   root to: "user#home"
-  #  root "user#home"
-  # root to: "admin#index"
+  
 
   namespace :admin do
   resources :tasks
@@ -26,18 +21,9 @@ resources :contractor, only: [:show, :edit, :update, :destroy] do
 end
 
 
-# config/routes.rb
-
 get  'worker/home',               to: 'worker#home',            as: 'worker_home'
 get  'worker/task/:id/apply',     to: 'worker#apply',           as: 'worker_apply_task'
 post 'worker/task/:id/apply',     to: 'worker#create_application', as: 'create_worker_application'
-
-# devise_for :people, controllers: {
-#   sessions: 'person/sessions'
-# }
-
-# get 'worker/home', to: 'worker#home', as: 'worker_home'
-# get 'worker/apply/:id', to: 'worker#apply', as: 'worker_apply_task'
 
 
 
@@ -67,18 +53,10 @@ post 'worker/task/:id/apply',     to: 'worker#create_application', as: 'create_w
   post "/new_application" => "application1#create"
 
 
-   # get "/task/:id/edit", to: "task#edit" as: "edit_task"
-   # get "/edit_task" => 'task#edit'
+ 
    get "tasks/:id/edit", to: "task#edit", as: "edit_task"
-  # patch 'tasks/:id/edit', to: 'task#edit', as: 'edit_task'
+ 
 
-
-  # namespace :user do
-  
-  #   resources :contractors, only: [ :index, :show,:edit,:update, :destroy ]
-  #   resources :workers, only: [ :index, :show,:edit,:update, :destroy ]
-
-  # end
 
   namespace :admin do
   root to: "dashboard#index"
@@ -88,10 +66,10 @@ post 'worker/task/:id/apply',     to: 'worker#create_application', as: 'create_w
   resources :categories, only: [ :index, :show,:edit, :update, :destroy ]
 end
 
-# resources :tasks, only: [ :index ]
+
 get "/tasks" => "task#index"
 
-# searching task
+
 get '/search_category' => "tasks#search"
 
 
@@ -99,16 +77,6 @@ get '/search_category' => "tasks#search"
     get 'search', on: :collection # Add the search action to the tasks resources
   end
 
-
-# devise_for :person, path: '', path_names: {
-#     sign_in: 'login',
-#     sign_out: 'logout',
-#     registration: 'signup'
-#    }
-
-  #  devise_scope :user do
-  #   get '/logout', to: 'devise/sessions#destroy'
-  # end
 
   namespace :admin do
     resources :tasks

@@ -4,7 +4,7 @@ class WorkerController < ApplicationController
   before_action :set_task, only: %i[apply create_application]
 
   def home
-    # @all_task = Task.includes(:category, :contractor)
+  
     if params[:category_id].present?
     @all_task = Task.includes(:category, :contractor).where(category_id: params[:category_id])
   else

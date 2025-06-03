@@ -10,6 +10,7 @@ class ContractorController < ApplicationController
   end
 
   def show
+    @contractor = User.find(params[:id])
   end
 
   def edit
@@ -25,7 +26,7 @@ class ContractorController < ApplicationController
 
   def destroy
     @contractor.destroy
-    redirect_to contractor_home_url, notice: 'Contractor deleted.'
+    redirect_to contractor_url, notice: 'Contractor deleted.'
   end
 
   private
@@ -35,6 +36,6 @@ class ContractorController < ApplicationController
   end
 
   def contractor_params
-    params.require(:user).permit(:name, :email, :phone, :bio)
+    params.require(:user).permit(:name, :email, :phone)
   end
 end

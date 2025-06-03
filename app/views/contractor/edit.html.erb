@@ -1,7 +1,7 @@
 <h1 style="text-align: center;">Edit Contractor</h1>
 
 <div style="max-width: 500px; margin: 0 auto;">
-  <%= form_with model: @contractor, url: contractor_path(@contractor), local: true do |form| %>
+  <%= form_with Contractor: @contractor do |form| %>
     <div style="margin-bottom: 15px;">
       <%= form.label :name %><br>
       <%= form.text_field :name, style: "width: 100%;" %>

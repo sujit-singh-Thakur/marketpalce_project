@@ -51,7 +51,7 @@ end
 
   private
   def param_data
-    params.require(:user).permit(:name,:email,:contact,:type)
+    params.require(:user).permit(:name,:email,:contact)
     # params.expect(user: [:name, :email, :contact,:type])
   end
   
