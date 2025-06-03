@@ -1,16 +1,12 @@
 class ContractorController < ApplicationController
-  
-
-  # def current_ability
-  #   @current_ability ||= Ability.new(current_person)
-  # end
+ 
 
   def home
     @all_contractor = User.where(type: 'Contractor').includes(:tasks => :category)
   end
 
   def show
-    @contractor = User.find(params[:id])
+     @contractor = User.find(params[:id])
   end
 
   def edit
@@ -26,7 +22,7 @@ class ContractorController < ApplicationController
 
   def destroy
     @contractor.destroy
-    redirect_to contractor_url, notice: 'Contractor deleted.'
+    redirect_to contractor_home_url, notice: 'Contractor deleted.'
   end
 
   private
@@ -36,6 +32,6 @@ class ContractorController < ApplicationController
   end
 
   def contractor_params
-    params.require(:user).permit(:name, :email, :phone)
+    params.require(:user).permit(:name, :email, :phone, :bio)
   end
 end

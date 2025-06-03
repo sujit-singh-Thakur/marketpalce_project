@@ -69,6 +69,14 @@ gem 'devise-jwt'
 
 group :development do
   gem 'letter_opener_web'
+
+  gem 'cancancan'
+  gem 'byebug'
+
+ gem "dartsass-rails"
+gem "bootstrap", "~> 5.3.3"
+
 end
 end
+
 

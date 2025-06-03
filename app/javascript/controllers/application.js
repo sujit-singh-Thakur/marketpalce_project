@@ -1,4 +1,10 @@
 import { Application } from "@hotwired/stimulus"
+import "@hotwired/turbo-rails"
+
+import "popper"
+import "bootstrap"
+
+import "controllers"
 
 const application = Application.start()
 

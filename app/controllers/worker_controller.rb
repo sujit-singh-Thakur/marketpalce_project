@@ -1,5 +1,6 @@
 class WorkerController < ApplicationController
   # before_action :authenticate_person!
+  
 
   before_action :set_task, only: %i[apply create_application]
 
@@ -25,7 +26,7 @@ class WorkerController < ApplicationController
     @application.task_id = @task.id
 
     if @application.save
-      ApplicationMailer.worker_applied_email(@application).deliver_later
+      TaskMailer.worker_applied_email(@application).deliver_now
  
       redirect_to worker_home_path, notice: "Application submitted!"
 

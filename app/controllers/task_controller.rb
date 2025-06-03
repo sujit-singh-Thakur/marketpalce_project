@@ -3,10 +3,9 @@ class TaskController < ApplicationController
     @tasks = Task.all
   end
   def search
-    @tasks = Task.all # Fetch all tasks
+    @tasks = Task.all 
     if params[:category].present?
-      @tasks = @tasks.where(category_id: params[:category]) # Filter by category
-      # Prioritize tasks from the matching category
+      @tasks = @tasks.where(category_id: params[:category]) 
       @prioritized_tasks = @tasks.where(category_id: params[:category])
       @other_tasks = @tasks.where.not(category_id: params[:category])
       @tasks = @prioritized_tasks.to_a + @other_tasks.to_a

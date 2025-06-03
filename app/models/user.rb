@@ -8,8 +8,8 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
 
-  def admin?
-    type.name == 'Admin'
-  end
   
+  def admin?
+    user.type == 'admin'
+   end
 end
