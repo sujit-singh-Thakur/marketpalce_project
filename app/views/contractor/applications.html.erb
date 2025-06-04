@@ -7,10 +7,11 @@
     <p><strong>Worker:</strong> <%= app.worker.name %></p>
     <p><strong>Task:</strong> <%= app.task.description %></p>
     <p><strong>Status:</strong> <%= app.status.presence || 'Pending' %></p>
-
+   <tr>
     <% unless app.status.in?(%w[accepted rejected]) %>
-      <%= button_to 'Accept', update_application_status_path(app, status: 'accepted'), method: :patch %>
-      <%= button_to 'Reject', update_application_status_path(app, status: 'rejected'), method: :patch %>
+     <td> <%= button_to 'Accept', update_application_status_path(app, status: 'accepted'), method: :patch %> </td>
+    <td>  <%= button_to 'Reject', update_application_status_path(app, status: 'rejected'), method: :patch %></td>
+    </tr>
     <% end %>
   </div>
 <% end %>

@@ -1,0 +1,9 @@
+<h1>Task Details</h1>
+
+<p><strong>Description:</strong> <%= @task.description %></p>
+<p><strong>Contact Info:</strong> <%= @task.contact_info %></p>
+<p><strong>Contractor:</strong> <%= @task.contractor.name if @task.contractor %></p>
+<p><strong>Category:</strong> <%= @task.category.category_name if @task.category %></p>
+
+<%= link_to 'Edit', edit_admin_task_path(@task) %> |
+<%= link_to 'Back', admin_tasks_path %>

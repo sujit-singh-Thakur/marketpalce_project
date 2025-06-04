@@ -11,7 +11,7 @@ mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 #   end
 # end
 resources :tasks
-resources :tasks, only: [:edit, :update]
+resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
 
 
 get '/tasks/new'

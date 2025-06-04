@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: %i[show edit update destroy]
 
 
   def index
@@ -13,6 +14,9 @@ class TasksController < ApplicationController
       @tasks = @prioritized_tasks.to_a + @other_tasks.to_a
       redirect_to search_category_url
     end
+  end
+
+ def show
   end
 
   def new
@@ -48,10 +52,23 @@ class TasksController < ApplicationController
   end
 end
 
+def destroy
+  @task = Task.find(params[:id])
+  @task.destroy
+  redirect_to contractor_home_url, notice: "Task deleted successfully."
+end
+
+
 
 
 
   private
+
+  
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
 
   def param_task
       params.require(:task).permit(:description, :contact_info, :category_id)
