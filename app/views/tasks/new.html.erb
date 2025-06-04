@@ -1,0 +1,27 @@
+
+<br>
+<br>
+
+<%= form_with model: @task, url: tasks_path do |form| %>
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_field :description %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :contact_info %><br>
+    <%= form.text_field :contact_info %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :category_id, "Category" %><br>
+    <%= form.collection_select :category_id, Category.all, :id, :category_name %>
+  </div>
+  <br>
+  
+
+  <%= form.submit "Create Task" %>
+<% end %>
+

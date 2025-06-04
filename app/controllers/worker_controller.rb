@@ -1,5 +1,4 @@
 class WorkerController < ApplicationController
-  # before_action :authenticate_person!
 
 
   before_action :set_task, only: %i[apply create_application]
@@ -32,7 +31,7 @@ end
     if @application.save
       TaskMailer.worker_applied_email(@application).deliver_now
  
-      redirect_to worker_home_path, notice: "Application submitted!"
+      redirect_to "http://localhost:3000/letter_opener", notice: "Application submitted!"
 
     else
       render :apply, alert: "Something went wrong."

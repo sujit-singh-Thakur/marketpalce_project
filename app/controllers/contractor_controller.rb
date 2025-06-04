@@ -10,8 +10,6 @@ end
   else
     redirect_to root_path, alert: "Access denied."
   end
-    
-    # @all_contractor = User.where(type: 'Contractor').includes(:tasks => :category)
   end
 
   def show
@@ -34,7 +32,6 @@ end
   @application = Application.find(params[:id])
   
   if @application.update(status: params[:status])
-    # Send email to the worker
     TaskMailer.status_updated_email(@application).deliver_now
     redirect_to contractor_applications_path, notice: "Application #{params[:status].capitalize}!"
   else
@@ -55,6 +52,6 @@ end
   end
 
   def contractor_params
-    params.require(:user).permit(:name, :email, :phone, :bio)
+    params.require(:user).permit(:name, :email, :phone)
   end
 end

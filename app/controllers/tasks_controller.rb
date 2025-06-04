@@ -1,4 +1,6 @@
-class TaskController < ApplicationController
+class TasksController < ApplicationController
+
+
   def index
     @tasks = Task.all
   end
@@ -16,32 +18,27 @@ class TaskController < ApplicationController
   def new
     @task = Task.new
   end
-
-  # def create
-  #  @task = Task.new(param_task={
-  #     description: params[:description],
-  #     contact_info: params[:contact_info],
-  #     category_id: params[:category_id],
-  #     contractor_id: params[:contractor_id]
-  #     })
-  #  # debugger
-  #  if @task.save
-  #   redirect_to contractor_home_url
-  #  else
-  #   render :new
-  #  end
-  # end
-
+  
   def edit
     @task = Task.find(params[:id])
   end
+  
+  def update
+    @task = Task.find(params[:id])
+    if @task.update(param_task)
+      redirect_to contractor_home_url, notice: "Task updated successfully."
+    else
+      render :edit
+    end
+  end
+  
 
   def create
   @task = Task.new(
     description: params[:task][:description],
     contact_info: params[:task][:contact_info],
     category_id: params[:task][:category_id],
-    contractor_id: current_user.id # ← assign contractor here
+    contractor_id: current_user.id 
   )
 
   if @task.save
@@ -53,7 +50,9 @@ end
 
 
 
+
   private
+
   def param_task
       params.require(:task).permit(:description, :contact_info, :category_id)
   end

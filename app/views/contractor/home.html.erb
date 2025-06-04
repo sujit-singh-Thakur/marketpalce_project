@@ -1,6 +1,9 @@
 
 
-<%= link_to "Add new task",new_task_url %><br><br>
+<%= link_to "Create New Task", new_task_path %><br><br>
+
+
+
 
 <%= link_to "Add new category",new_category_url %>
 <br><br>
@@ -15,7 +18,9 @@
     <h2><%= task.description %></h2>
     <p><strong>Category:</strong> <%= task.category&.category_name %></p>
 
-    <%= link_to 'Edit', edit_task_path(task) %> |
+    <%# <%= link_to 'Edit', edit_task_path(task) %> 
+    <%= link_to 'Edit Task', edit_task_path(task) %>|
+
     <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
   </div>
 <% end %>

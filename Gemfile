@@ -72,9 +72,8 @@ group :development do
 
   gem 'cancancan'
   gem 'byebug'
-
- gem "dartsass-rails"
-gem "bootstrap", "~> 5.3.3"
+  
+gem 'tailwindcss-rails'
 
 end
 end
