@@ -1,27 +1,30 @@
 
-<br>
-<br>
 
-<%= form_with model: @task, url: tasks_path do |form| %>
-  <div>
-    <%= form.label :description %><br>
-    <%= form.text_field :description %>
+
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa;">
+  <div style="width: 400px; padding: 25px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; margin-bottom: 20px;">Create Task</h2>
+
+    <%= form_with model: @task, url: tasks_path do |form| %>
+      <div style="margin-bottom: 15px;">
+        <%= form.label :description %><br>
+        <%= form.text_field :description, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
+      </div>
+
+      <div style="margin-bottom: 15px;">
+        <%= form.label :contact_info %><br>
+        <%= form.text_field :contact_info, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <%= form.label :category_id, "Category" %><br>
+        <%= form.collection_select :category_id, Category.all, :id, :category_name, {}, { style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" } %>
+      </div>
+
+      <div style="text-align: center;">
+        <%= form.submit "Create Task", style: "padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;" %>
+      </div>
+    <% end %>
   </div>
-  <br>
-
-  <div>
-    <%= form.label :contact_info %><br>
-    <%= form.text_field :contact_info %>
-  </div>
-  <br>
-
-  <div>
-    <%= form.label :category_id, "Category" %><br>
-    <%= form.collection_select :category_id, Category.all, :id, :category_name %>
-  </div>
-  <br>
-  
-
-  <%= form.submit "Create Task" %>
-<% end %>
-
+</div>

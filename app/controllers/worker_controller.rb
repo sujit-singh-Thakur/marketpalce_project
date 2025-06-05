@@ -8,7 +8,6 @@ def my_applications
 end
 
   def home
-  
     if params[:category_id].present?
     @all_task = Task.includes(:category, :contractor).where(category_id: params[:category_id])
   else

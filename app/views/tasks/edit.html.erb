@@ -1,4 +1,9 @@
-<h1>Edit Task</h1>
+
+<div style="display: flex; justify-content: center; align-items: center; height: 70vh; background-color: #f8f9fa;">
+  <div style="width: 400px; padding: 25px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; margin-bottom: 20px;">Edit Task</h2>
+
+
 
 <%= form_with model: @task, local: true do |form| %>
   <% if @task.errors.any? %>

@@ -1,10 +1,14 @@
-<h1 style="text-align: center;">Apply for Task</h1>
+<div style="display: flex; justify-content: center; align-items: center; height: 70vh; background-color: #f8f9fa;">
+  <div style="width: 400px; padding: 25px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; margin-bottom: 20px;">Apply for task</h2>
+
+
 
 <div style="max-width: 500px; margin: 0 auto;">
   <%= form_with model: @application, url: create_worker_application_path(@task), local: true do |form| %>
 
     <div style="margin-bottom: 15px;">
-    <%= form.label :email %>
+    <%= form.label :email %> 
     <%= form.email_field :email%>
     <br> 
     </div>

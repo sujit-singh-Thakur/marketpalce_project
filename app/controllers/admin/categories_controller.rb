@@ -1,5 +1,4 @@
 class Admin::CategoriesController < ApplicationController
-  # before_action :set_task, only: %i[show  destroy]
      def index
     @categories = Category.all
   end

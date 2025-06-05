@@ -9,10 +9,16 @@
     <p><strong>Status:</strong> <%= app.status.presence || 'Pending' %></p>
    <tr>
     <% unless app.status.in?(%w[accepted rejected]) %>
-     <td> <%= button_to 'Accept', update_application_status_path(app, status: 'accepted'), method: :patch %> </td>
-    <td>  <%= button_to 'Reject', update_application_status_path(app, status: 'rejected'), method: :patch %></td>
-    </tr>
-    <% end %>
+  <td colspan="2">
+    <div style="display: flex; gap: 10px;">
+      <%= button_to 'Accept', update_application_status_path(app, status: 'accepted'), method: :patch, style: "display: inline-block; padding: 6px 12px; background-color: #28a745; color: white; border: none; border-radius: 4px;" %>
+
+      <%= button_to 'Reject', update_application_status_path(app, status: 'rejected'), method: :patch, style: "display: inline-block; padding: 6px 12px; background-color: #dc3545; color: white; border: none; border-radius: 4px;" %>
+    </div>
+  </td>
+</tr>
+<% end %>
+
   </div>
 <% end %>
 
