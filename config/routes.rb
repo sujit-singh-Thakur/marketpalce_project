@@ -5,11 +5,6 @@ Rails.application.routes.draw do
  
 mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-# resources :contractor, only: [:show, :edit, :update, :destroy] do
-#   collection do
-#     get 'home'
-#   end
-# end
 resources :tasks
 resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
 
@@ -66,12 +61,6 @@ post 'tasks', to: 'tasks#create'
   get "/new_application" => "application1#new"
   post "/new_application" => "application1#create"
 
-
-   # get "/task/:id/edit", to: "task#edit" as: "edit_task"
-   # get "/edit_task" => 'task#edit'
-  #  get "tasks/:id/edit", to: "task#edit", as: "edit_task"
-  # patch 'tasks/:id/edit', to: 'task#edit', as: 'edit_task'
-
   
   namespace :user do
   
@@ -88,7 +77,6 @@ post 'tasks', to: 'tasks#create'
   resources :categories, only: [ :index, :show,:edit, :update, :destroy ]
 end
 
-# resources :tasks, only: [ :index ]
 get "/tasks" => "task#index"
 
 # searching task

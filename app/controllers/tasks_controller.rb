@@ -9,9 +9,6 @@ class TasksController < ApplicationController
     @tasks = Task.all 
     if params[:category].present?
       @tasks = @tasks.where(category_id: params[:category]) 
-      @prioritized_tasks = @tasks.where(category_id: params[:category])
-      @other_tasks = @tasks.where.not(category_id: params[:category])
-      @tasks = @prioritized_tasks.to_a + @other_tasks.to_a
       redirect_to search_category_url
     end
   end
@@ -24,11 +21,9 @@ class TasksController < ApplicationController
   end
   
   def edit
-    @task = Task.find(params[:id])
   end
   
   def update
-    @task = Task.find(params[:id])
     if @task.update(param_task)
       redirect_to contractor_home_url, notice: "Task updated successfully."
     else
@@ -53,7 +48,6 @@ class TasksController < ApplicationController
 end
 
 def destroy
-  @task = Task.find(params[:id])
   @task.destroy
   redirect_to contractor_home_url, notice: "Task deleted successfully."
 end
@@ -63,14 +57,12 @@ end
 
 
   private
-
-  
   def set_task
     @task = Task.find(params[:id])
   end
 
 
   def param_task
-      params.require(:task).permit(:description, :contact_info, :category_id)
+      params.require(:task).permit(:description, :contact_info, :category_id,:contractor_id)
   end
 end

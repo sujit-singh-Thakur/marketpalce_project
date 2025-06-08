@@ -18,7 +18,7 @@ end
   end
 
   def apply
-    @application = Application.includes(:worker)
+    @application = Application.new
   end
 
   def create_application
@@ -30,7 +30,7 @@ end
     if @application.save
       TaskMailer.worker_applied_email(@application).deliver_now
  
-      redirect_to "http://localhost:3000/letter_opener", notice: "Application submitted!"
+      redirect_to "http://localhost:3000/letter_opener", allow_other_host: true, notice: "Application submitted!"
 
     else
       render :apply, alert: "Something went wrong."

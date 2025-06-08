@@ -1,5 +1,5 @@
 class Application < ApplicationRecord
-  belongs_to :worker, class_name: "User", optional: true
+  belongs_to :worker, class_name: "User"
   belongs_to :task
 
 
