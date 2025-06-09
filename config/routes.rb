@@ -84,7 +84,7 @@ get '/search_category' => "tasks#search"
 
 
   resources :tasks do
-    get 'search', on: :collection # Add the search action to the tasks resources
+    get 'search', on: :collection 
   end
 
   namespace :admin do

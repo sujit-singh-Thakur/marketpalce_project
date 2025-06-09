@@ -13,7 +13,7 @@ class TaskMailer < ApplicationMailer
   def worker_applied_email(application)
     @application = application
     @task = application.task
-    @contractor = @task.contractor  # assuming a task belongs_to a contractor
+    @contractor = @task.contractor  
 
     mail(
       to: @contractor.email,
