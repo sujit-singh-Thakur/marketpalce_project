@@ -1,0 +1,13 @@
+class Admin::BaseController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_admin!
+
+  private
+
+  def ensure_admin!
+    unless current_user&.is_a?(Admin)
+      flash[:alert] = "Access Denied: You are not authorized to access the admin panel."
+      redirect_to root_path
+    end
+  end
+end

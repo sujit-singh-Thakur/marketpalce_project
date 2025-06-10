@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     case resource.type&.downcase
+     when 'admin'
+    admin_root_path
     when 'contractor'
       contractor_home_path
     when 'worker'
