@@ -8,6 +8,7 @@ mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 resources :tasks
 resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
 
+resources :categories, only: [:index,:show, :new, :create, :edit, :update, :destroy]
 
 get '/tasks/new'
 
@@ -54,8 +55,8 @@ post 'tasks', to: 'tasks#create'
   get "/new_task" => "task#new"
   post "/new_task" => "task#create"
 
-  get "/new_category" => "category#new"
-  post "/new_category" => "category#create"
+  # get "/new_category" => "category#new"
+  # post "/new_category" => "category#create"
 
 
   get "/new_application" => "application1#new"

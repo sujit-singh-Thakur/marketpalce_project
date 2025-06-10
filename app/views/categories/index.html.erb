@@ -1,0 +1,26 @@
+<h1>All Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.category_name %></td>
+
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= button_to 'Delete',category_path(category.id), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+    <% end %> 
+  </tbody>
+</table> 
+<br>
+<td><%= link_to 'Add New Category', new_category_path %></td>
+
+<td> <%= link_to 'Back', contractor_home_path %>
+
+

@@ -6,12 +6,14 @@
 
 <div style="max-width: 500px; margin: 0 auto;">
   <%= form_with model: @application, url: create_worker_application_path(@task), local: true do |form| %>
+<% if @application.errors.any? %>
+    <ul>
+      <% @application.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+<% end %>
 
-    <div style="margin-bottom: 15px;">
-    <%= form.label :email %> 
-    <%= form.email_field :email%>
-    <br> 
-    </div>
 
      <div style="margin-bottom: 15px;">
     <%= form.label :contact_number %>
@@ -22,7 +24,7 @@
     <%= form.label :address %>
     <%= form.text_field :address%>
     </div>
-
+ 
     <div style="text-align: center;">
       <%= form.submit "Submit Application", class: "btn btn-success" %>
     </div>
