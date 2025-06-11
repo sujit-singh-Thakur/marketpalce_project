@@ -52,6 +52,6 @@ end
   end
 
   def contractor_params
-    params.require(:user).permit(:name, :email, :phone)
+    params.require(:user).permit(:name, :email, :type)
   end
 end
