@@ -1,37 +1,44 @@
-<div style="display: flex; justify-content: center; align-items: center; height: 70vh; background-color: #f8f9fa;">
-  <div style="width: 400px; padding: 25px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-    <h2 style="text-align: center; margin-bottom: 20px;">Apply for task</h2>
 
-
-
-<div style="max-width: 500px; margin: 0 auto;">
-  <%= form_with model: @application, url: create_worker_application_path(@task), local: true do |form| %>
-<% if @application.errors.any? %>
-    <ul>
-      <% @application.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-<% end %>
-
-
-     <div style="margin-bottom: 15px;">
-    <%= form.label :contact_number %>
-    <%= form.telephone_field :contact_number%>
-    </div>
-
-     <div style="margin-bottom: 15px;">
-    <%= form.label :address %>
-    <%= form.text_field :address%>
-    </div>
- 
-    <div style="text-align: center;">
-      <%= form.submit "Submit Application", class: "btn btn-success" %>
-    </div>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f8f9fa;">
+  <div style="width: 100%; max-width: 450px; padding: 30px; background-color: white; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
     
-  <% end %>
+    <h2 style="text-align: center; margin-bottom: 25px;">Apply for Task</h2>
 
-  <div style="text-align: center; margin-top: 15px;">
-    <%= link_to 'Back to Tasks', worker_home_path, class: "btn btn-secondary" %>
+    <%= form_with model: @application, url: create_worker_application_path(@task), local: true do |form| %>
+
+      <% if @application.errors.any? %>
+        <div style="margin-bottom: 20px; color: red;">
+          <ul style="padding-left: 20px;">
+            <% @application.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %> 
+          </ul>
+        </div>
+      <% end %>
+
+      <div style="margin-bottom: 20px;">
+        <%= form.label :contact_number, style: "display: block; margin-bottom: 5px;" %>
+        <%= form.telephone_field :contact_number, class: "form-control", style: "width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" %>
+        <% if @application.errors[:contact_number].any? %>
+        <% end %>
+      </div>
+   
+      <div style="margin-bottom: 20px;">
+        <%= form.label :address, style: "display: block; margin-bottom: 5px;" %>
+        <%= form.text_field :address, class: "form-control", style: "width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;" %>
+        <% if @application.errors[:address].any? %>
+          <small style="color: red;"><%= @application.errors[:address].first %></small>
+        <% end %>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 10px;">
+        <%= form.submit "Submit Application", class: "btn btn-success", style: "padding: 10px 20px; border-radius: 4px;" %>
+      </div>
+    
+    <% end %>
+
+    <div style="text-align: center; margin-top: 15px;">
+      <%= link_to 'Back to Tasks', worker_home_path, class: "btn btn-secondary", style: "padding: 8px 16px; border-radius: 4px;" %>
+    </div>
   </div>
 </div>

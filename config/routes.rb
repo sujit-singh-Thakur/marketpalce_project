@@ -74,7 +74,7 @@ post 'tasks', to: 'tasks#create'
   namespace :admin do
   root to: "dashboard#index"
 
-  resources :users, only: [ :index, :show, :destroy ]
+  resources :users, only: [ :index,:edit,:update, :show, :destroy ]
   resources :tasks, only: [ :index, :show,:edit,:update, :destroy ]
   resources :categories, only: [ :index, :show,:edit, :update, :destroy ]
 end
