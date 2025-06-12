@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+           self.inheritance_column = :type
 
     validate :only_one_admin_allowed, if: -> { type == 'Admin' }
 

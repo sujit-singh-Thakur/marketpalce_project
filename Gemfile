@@ -65,9 +65,9 @@ group :test do
 
   gem "devise" 
 gem 'devise-jwt'
+end
 
 
-group :development do
   gem 'letter_opener_web'
 
   gem 'cancancan'
@@ -75,7 +75,12 @@ group :development do
   
 gem 'tailwindcss-rails'
 
-end
-end
 
+gem 'rails_admin'
+
+
+
+gem "cssbundling-rails"
+gem "propshaft"
+gem "sprockets-rails"
 
