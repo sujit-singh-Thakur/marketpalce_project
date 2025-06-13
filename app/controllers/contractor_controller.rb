@@ -1,5 +1,6 @@
 class ContractorController < ApplicationController
- 
+ before_action :set_contractor, only: [:show, :edit, :update, :destroy]
+
     def applications
      @applications = Application.includes(:task, :worker).where(tasks: { contractor_id: current_user.id })
 end
@@ -52,6 +53,6 @@ end
   end
 
   def contractor_params
-    params.require(:user).permit(:name, :email, :type)
+    params.require(:contractor).permit(:name, :email,:contact,:type)
   end
 end

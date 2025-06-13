@@ -21,7 +21,8 @@
           <%# <%= link_to 'Delete', admin_user_url(user), method: :delete, data: { confirm: 'Are you sure?' } %> 
       <td> <%= button_to 'Destroy', admin_user_url(user.id), method: :delete, :onclick => "return confirm('Are you sure you want to delete this post?')" %></td>
        <%else%>
-       <%= link_to 'Edit' , edit_admin_user_path(user.id)%>
+       <%= link_to 'Edit', edit_contractor_path(user.id), class: 'btn btn-primary' %>
+
        
         <td> <%= button_to 'Destroy', admin_user_url(user.id), method: :delete, :onclick => "return confirm('Are you sure you want to delete this post?')" %></td>
 

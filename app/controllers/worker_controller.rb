@@ -1,6 +1,7 @@
 class WorkerController < ApplicationController
 
   before_action :set_task, only: %i[apply create_application]
+  before_action :set_page, only:[:edit,:update]
 
 def my_applications
   @applications = Application.includes(:task).where(worker_id: current_user.id)
@@ -36,6 +37,17 @@ end
     end
   end
   
+  def edit
+  end
+
+  def update
+    if @worker.update(worker_params)
+      redirect_to worker_home_url, notice: "worker updated."
+    else
+      render :edit
+    end
+  end
+
 
 
   private
@@ -44,7 +56,16 @@ end
     @task = Task.find(params[:id])
   end
 
+  def set_page
+    @worker = Worker.find(params[:id])
+  end 
+
+
   def application_params
     params.require(:application).permit(:status, :email,:contact_number, :address)
+  end
+
+  def worker_params
+    params.require(:worker).permit(:name,:email,:contact,:type)
   end
 end

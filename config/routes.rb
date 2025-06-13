@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
 
   root to: "user#home"
@@ -66,8 +65,8 @@ post 'tasks', to: 'tasks#create'
   
   namespace :user do
   
-    resources :contractors, only: [ :index, :show,:edit,:update, :destroy ]
-    resources :workers, only: [ :index, :show,:edit,:update, :destroy ]
+    resources :contractor, only: [ :index, :show,:edit,:update, :destroy ]
+    resources :worker, only: [ :index, :show,:edit,:update, :destroy ]
 
   end
 

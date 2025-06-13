@@ -76,11 +76,7 @@ end
 gem 'tailwindcss-rails'
 
 
-gem 'rails_admin'
 
 
 
-gem "cssbundling-rails"
-gem "propshaft"
-gem "sprockets-rails"
 

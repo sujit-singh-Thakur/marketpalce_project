@@ -3,15 +3,15 @@
   <div style="width: 400px; padding: 25px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
     <h2 style="text-align: center; margin-bottom: 20px;">Edit Task</h2>
     
-<%= form_with(model: @contractor, url: contractor_path(@contractor), local: true) do |f| %>
+<%= form_with(model: @worker, url: worker_path(@worker), local: true) do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %> <br><br>
+  <%= f.text_field :name %> <br>
 
   <%= f.label :email %>
-  <%= f.email_field :email %><br><br>
+  <%= f.email_field :email %><br>
 
   <%= f.label :contact %>
-  <%= f.text_field :contact %><br><br>
+  <%= f.text_field :contact %><br>
 
   <% if current_user.type == 'Admin' %><br>
     <%= f.label :type %>
