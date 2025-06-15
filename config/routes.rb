@@ -5,17 +5,13 @@ Rails.application.routes.draw do
  
 mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-resources :tasks
-resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
+
 
 resources :categories, only: [:index,:show, :new, :create, :edit, :update, :destroy]
 
 get '/tasks/new'
 
  
-resources :contractor do
-  get 'applications', on: :collection
-end
 
 
 get  'worker/home',               to: 'worker#home',            as: 'worker_home'
@@ -51,24 +47,24 @@ post 'tasks', to: 'tasks#create'
   get "/contractor_home" => "contractor#home"
   get "/worker_home" => "worker#home"
 
+resources :tasks, only: [:index, :new, :create, :edit, :update, :destroy]
 
-  get "/new_task" => "task#new"
-  post "/new_task" => "task#create"
+  get "/new_task" => "tasks#new"
+  post "/new_task" => "tasks#create"
 
-  # get "/new_category" => "category#new"
-  # post "/new_category" => "category#create"
 
 
   get "/new_application" => "application1#new"
   post "/new_application" => "application1#create"
 
   
-  namespace :user do
   
+    resources :contractor do
+      get 'applications', on: :collection
+    end
     resources :contractor, only: [ :index, :show,:edit,:update, :destroy ]
     resources :worker, only: [ :index, :show,:edit,:update, :destroy ]
 
-  end
 
   namespace :admin do
   root to: "dashboard#index"
@@ -78,18 +74,10 @@ post 'tasks', to: 'tasks#create'
   resources :categories, only: [ :index, :show,:edit, :update, :destroy ]
 end
 
-get "/tasks" => "task#index"
-
-# searching task
-get '/search_category' => "tasks#search"
 
 
   resources :tasks do
     get 'search', on: :collection 
-  end
-
-  namespace :admin do
-    resources :tasks
   end
 
 
