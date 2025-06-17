@@ -1,12 +1,11 @@
-class WorkerController < ApplicationController
-
+class WorkersController < ApplicationController
   before_action :set_task, only: %i[apply create_application]
-  before_action :set_page, only:[:edit,:update]
+  before_action :set_page, only: [ :edit, :update ]
 
-def my_applications
-  @applications = Application.includes(:task).where(worker_id: current_user.id)
-end
-def home
+  def my_applications
+    @applications = Application.includes(:task).where(worker_id: current_user.id)
+  end
+  def home
   if params[:category_id].present?
     @all_task = Task.includes(:category, :contractor).where(category_id: params[:category_id])
   else
@@ -15,7 +14,7 @@ def home
 
   @categories = Category.all
   @applied_task_ids = current_user.applications.pluck(:task_id)
-end
+  end
 
   def apply
     @application = Application.new
@@ -23,12 +22,11 @@ end
 
 
   def create_application
-  
     @application = Application.new(application_params)
     @application.worker_id = current_user.id
     @application.task_id = @task.id
-    @application.email = current_user.email 
-  
+    @application.email = current_user.email
+
     if @application.save
       TaskMailer.worker_applied_email(@application).deliver_now
       redirect_to "http://localhost:3000/letter_opener", allow_other_host: true, notice: "Application submitted!"
@@ -36,7 +34,7 @@ end
       render :apply, alert: "Something went wrong."
     end
   end
-  
+
   def edit
   end
 
@@ -58,14 +56,14 @@ end
 
   def set_page
     @worker = Worker.find(params[:id])
-  end 
+  end
 
 
   def application_params
-    params.require(:application).permit(:status, :email,:contact_number, :address)
+    params.require(:application).permit(:status, :email, :contact_number, :address)
   end
 
   def worker_params
-    params.require(:worker).permit(:name,:email,:contact,:type)
+    params.require(:worker).permit(:name, :email, :contact, :type)
   end
 end

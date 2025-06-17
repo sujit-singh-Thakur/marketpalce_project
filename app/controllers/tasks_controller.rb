@@ -6,9 +6,9 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
   def search
-    @tasks = Task.all 
+    @tasks = Task.all
     if params[:category].present?
-      @tasks = @tasks.where(category_id: params[:category]) 
+      @tasks = @tasks.where(category_id: params[:category])
       redirect_to search_category_url
     end
   end
@@ -19,10 +19,10 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
   end
-  
+
   def edit
   end
-  
+
   def update
     if @task.update(param_task)
       redirect_to contractor_home_url, notice: "Task updated successfully."
@@ -30,14 +30,14 @@ class TasksController < ApplicationController
       render :edit
     end
   end
-  
+
 
   def create
   @task = Task.new(
     description: params[:task][:description],
     contact_info: params[:task][:contact_info],
     category_id: params[:task][:category_id],
-    contractor_id: current_user.id 
+    contractor_id: current_user.id
   )
 
   if @task.save
@@ -53,9 +53,6 @@ def destroy
 end
 
 
-
-
-
   private
   def set_task
     @task = Task.find(params[:id])
@@ -63,6 +60,6 @@ end
 
 
   def param_task
-      params.require(:task).permit(:description, :contact_info, :category_id,:contractor_id)
+      params.require(:task).permit(:description, :contact_info, :category_id, :contractor_id)
   end
 end

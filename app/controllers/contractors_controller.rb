@@ -1,21 +1,20 @@
-class ContractorController < ApplicationController
- before_action :set_contractor, only: [:show, :edit, :update, :destroy]
+class ContractorsController < ApplicationController
+ before_action :set_contractor, only: [ :show, :edit, :update, :destroy ]
 
-    def applications
-     @applications = Application.includes(:task, :worker).where(tasks: { contractor_id: current_user.id })
-end
+  def applications
+    @applications = Application.includes(:task, :worker).where(tasks: { contractor_id: current_user.id })
+  end
 
   def home
-     if current_user.type == 'Contractor'
+     if current_user.type == "Contractor"
     @tasks = current_user.tasks.includes(:category)
-  else
+     else
     redirect_to root_path, alert: "Access denied."
-  end
+     end
   end
 
   def show
     @contractor = User.find(params[:id])
-
   end
 
   def edit
@@ -31,7 +30,7 @@ end
 
   def update_status
   @application = Application.find(params[:id])
-  
+
   if @application.update(status: params[:status])
     TaskMailer.status_updated_email(@application).deliver_now
     redirect_to contractor_applications_path, notice: "Application #{params[:status].capitalize}!"
@@ -43,7 +42,7 @@ end
 
   def destroy
     @contractor.destroy
-    redirect_to contractor_home_url, notice: 'Contractor deleted.'
+    redirect_to contractor_home_url, notice: "Contractor deleted."
   end
 
   private
@@ -53,6 +52,6 @@ end
   end
 
   def contractor_params
-    params.require(:contractor).permit(:name, :email,:contact,:type)
+    params.require(:contractor).permit(:name, :email, :contact, :type)
   end
 end

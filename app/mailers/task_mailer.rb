@@ -1,6 +1,5 @@
 class TaskMailer < ApplicationMailer
-
-   default from: 'noreply@example.com'
+   default from: "noreply@example.com"
 
   def status_updated_email(application)
     @worker = application.worker
@@ -13,12 +12,11 @@ class TaskMailer < ApplicationMailer
   def worker_applied_email(application)
     @application = application
     @task = application.task
-    @contractor = @task.contractor  
+    @contractor = @task.contractor
 
     mail(
       to: @contractor.email,
       subject: "New Application for Your Task: #{@task.description}"
     )
   end
-
 end

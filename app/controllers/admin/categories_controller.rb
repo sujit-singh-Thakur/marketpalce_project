@@ -10,7 +10,7 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
    end
   def edit; end
- 
+
   def create
     @category = Category.new(category_params)
     if @category.save
@@ -19,23 +19,19 @@ class Admin::CategoriesController < ApplicationController
       render :new
     end
   end
-  
- 
+
+
   def destroy
      @category = Category.find(params[:id])
      @category.tasks.destroy_all
     @category.destroy
-     
+
     redirect_to admin_categories_path, notice: "Category deleted."
   end
-
-  # def set_task
-  #   @category = Task.find(params[:id])
-  # end
 
   private
 
   def category_params
-    params.expect(category: [:name])
+    params.expect(category: [ :name ])
   end
 end

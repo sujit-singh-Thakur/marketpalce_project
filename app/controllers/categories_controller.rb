@@ -1,10 +1,9 @@
 class CategoriesController < ApplicationController
+def index
+   @categories = Category.all
+ end
 
-  def index
-    @categories = Category.all
-  end
-
-  def new
+ def new
     @category = Category.new
   end
   def show
@@ -13,9 +12,8 @@ class CategoriesController < ApplicationController
   def edit
     @category = Category.find(params[:id])
    end
- 
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.new(category_params)
     if @category.save
       redirect_to categories_path, notice: "Category created."
     else
@@ -23,21 +21,22 @@ class CategoriesController < ApplicationController
     end
   end
 
+
   def update
     @category = Category.find(params[:id])
    if  @category. update(category_params)
-    redirect_to categories_path ,notice: "category updated successfully."
+    redirect_to categories_path, notice: "category updated successfully."
    else
     render :edit
    end
   end
-  
- 
+
+
   def destroy
      @category = Category.find(params[:id])
      @category.tasks.destroy_all
     @category.destroy
-     
+
     redirect_to categories_path, notice: "Category deleted."
   end
 
@@ -46,7 +45,6 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.expect(category: [:category_name])
+    params.expect(category: [ :category_name ])
   end
 end
- 

@@ -63,20 +63,15 @@ group :test do
 
   gem "bootsnap", require: false
 
-  gem "devise" 
-gem 'devise-jwt'
+  gem "devise"
+gem "devise-jwt"
 end
 
 
-  gem 'letter_opener_web'
+  gem "letter_opener_web"
 
-  gem 'cancancan'
-  gem 'byebug'
-  
-gem 'tailwindcss-rails'
+  gem "cancancan"
+  gem "byebug"
 
-
-
-
-
-
+gem "tailwindcss-rails"
+gem "rubocop"
