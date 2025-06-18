@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :type ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name,:email,:contact, :type ])
     devise_parameter_sanitizer.permit(:account_update, keys: [ :name, :type ])
   end
 
@@ -33,9 +33,7 @@ class ApplicationController < ActionController::Base
   def after_sign_out_path_for(resource_or_scope)
     new_user_session_path
   end
-# def after_sign_out_path_for(resource)
-#   redirect_to new_user_session_path
-# end
+
 
 def after_sign_up_path_for(resource)
   if type == "contractor"
@@ -44,18 +42,4 @@ def after_sign_up_path_for(resource)
       worker_home_url(resource)
   end
 end
-
-
-  # protected
-
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:email])
-  # end
-
-
-  # redirect_to new_person_session_path
-  # def after_sign_in_path_for(resource)
-  #   new_person_session_path(current_)
-  # end
 end

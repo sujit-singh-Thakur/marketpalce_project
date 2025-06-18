@@ -75,3 +75,5 @@ end
 
 gem "tailwindcss-rails"
 gem "rubocop"
+
+gem "tailwindcss-ruby", "~> 4.1"

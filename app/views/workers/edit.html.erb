@@ -1,10 +1,17 @@
 
 <div style="display: flex; justify-content: center; align-items: center; height: 70vh; background-color: #f8f9fa;">
   <div style="width: 400px; padding: 25px; background-color: white; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
-    <h2 style="text-align: center; margin-bottom: 20px;">Edit Task</h2>
- <h2>Edit Your Profile</h2>
+    <h2 style="text-align: center; margin-bottom: 20px;">Edit Your Profile</h2>
+
 
 <%= form_with model: @worker, url: worker_path(@worker), method: :patch, local: true do |f| %>
+   <% if @worker.errors.any? %>
+      <ul>
+      <%@worker.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <%end%>
+      </ul>
+    <%end%>  
    <%= f.label :name %>
   <%= f.text_field :name %> <br><br>
 

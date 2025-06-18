@@ -21,11 +21,6 @@
         <%= form.text_field :description, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
       </div>
 
-      <div style="margin-bottom: 15px;">
-        <%= form.label :contact_info %><br>
-        <%= form.text_field :contact_info, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
-      </div>
-
       <div style="margin-bottom: 20px;">
         <%= form.label :category_id, "Category" %><br>
         <%= form.collection_select :category_id, Category.all, :id, :category_name, {}, { style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" } %>

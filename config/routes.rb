@@ -17,7 +17,7 @@ get "contractor/tasks/:id/applied_workers", to: "contractors#applied_workers", a
 patch "/contractor/applications/:id/status", to: "contractors#update_status", as: "update_application_status"
 
 get "contractor/applications", to: "contractors#applications", as: :contractor_applications
- get "contractor/:id", to: "contractors#show", as: :contractor_view
+get "contractor/:id", to: "contractors#show", as: :contractor_view
 
 get "worker/my_applications", to: "workers#my_applications", as: :worker_my_applications
 
@@ -39,8 +39,8 @@ resources :tasks, only: [ :index, :new, :create, :edit, :update, :destroy ]
     end
     resources :contractors, only: [ :index, :show, :edit, :update, :destroy ]
     resources :workers, only: [ :index, :show, :edit, :update, :destroy ]
-   
-   resources :categories, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
+
+    resources :categories, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
 
 
   namespace :admin do
@@ -58,7 +58,7 @@ end
   end
 
    get "/contractor_home" => "contractors#home"
-  
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

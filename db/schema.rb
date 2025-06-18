@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_17_052219) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_02_134313) do
   create_table "applications", force: :cascade do |t|
     t.integer "task_id", null: false
     t.integer "worker_id"
@@ -28,7 +28,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_052219) do
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "contractor_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -60,5 +59,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_17_052219) do
   add_foreign_key "applications", "tasks"
   add_foreign_key "applications", "users", column: "worker_id"
   add_foreign_key "tasks", "categories"
-  add_foreign_key "tasks", "users", column: "contractor_id"
+  add_foreign_key "tasks", "users", column: "contractor_id"/home/developer/marketpalce_project/config/routes.rb
 end

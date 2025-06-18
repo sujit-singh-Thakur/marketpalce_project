@@ -13,7 +13,7 @@ def index
     @category = Category.find(params[:id])
    end
   def create
-    @category = current_user.categories.new(category_params)
+    @category = Category.new(category_params)
     if @category.save
       redirect_to categories_path, notice: "Category created."
     else

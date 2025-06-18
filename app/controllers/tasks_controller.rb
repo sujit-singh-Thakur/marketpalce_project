@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   def create
   @task = Task.new(
     description: params[:task][:description],
-    contact_info: params[:task][:contact_info],
+    contact_info: current_user.contact,
     category_id: params[:task][:category_id],
     contractor_id: current_user.id
   )

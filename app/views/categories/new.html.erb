@@ -6,16 +6,16 @@
 <div>
 
 <%= form_with model: @category, url: categories_path, method: :post do |first| %>
-<% if @category.errors.any? %>
-    <ul>
-    <%= @category.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <%end%>
-    </ul>
-    <%end%> 
+  <% if @category.errors.any? %>
+      <ul>
+      <%@category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <%end%>
+      </ul>
+      <%end%> 
 <%=first.label :category_name%>
 <%= first.text_field :category_name%>
-</div>
+
 <br>
     <%=first.submit  "add new category"%>
 <%end%>

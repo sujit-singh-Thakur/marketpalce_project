@@ -7,6 +7,7 @@
     <h2 style="text-align: center; margin-bottom: 20px;">Sign up</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
       <%# <%= render "devise/shared/error_messages", resource: resource %> 
        <% if resource.errors.any? %>
     <ul>
@@ -15,6 +16,7 @@
       <% end %>
     </ul>
 <% end %>
+
       <div class="field" style="margin-bottom: 15px;">
         <%= f.label :name %><br />
         <%= f.text_field :name, autofocus: true, autocomplete: "name", style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
@@ -23,6 +25,11 @@
       <div class="field" style="margin-bottom: 15px;">
        <%= f.label :email %><br />
        <%= f.email_field :email, autofocus: true, autocomplete: "email", style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
+      </div>
+
+        <div class="field" style="margin-bottom: 15px;">
+          <%= f.label :contact%>
+          <%= f.telephone_field :contact, style: "width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" %>
       </div>
 
       <div class="field" style="margin-bottom: 15px;">

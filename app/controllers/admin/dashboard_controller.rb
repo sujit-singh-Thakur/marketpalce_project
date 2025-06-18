@@ -4,7 +4,6 @@ class Admin::DashboardController < ApplicationController
 
   def index
   end
-  
   private
   def ensure_admin!
     unless current_user&.is_a?(Admin)

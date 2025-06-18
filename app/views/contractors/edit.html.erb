@@ -4,6 +4,13 @@
     <h2 style="text-align: center; margin-bottom: 20px;">Edit Task</h2>
     
 <%= form_with(model: @contractor, url: contractor_path(@contractor), local: true) do |f| %>
+    <% if @contractor.errors.any? %>
+      <ul>
+      <%@contractor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <%end%>
+      </ul>
+    <%end%>  
   <%= f.label :name %>
   <%= f.text_field :name %> <br><br>
 
