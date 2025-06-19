@@ -22,31 +22,28 @@ class ContractorsController < ApplicationController
 
   def update
     if @contractor.update(contractor_params)
-      redirect_to contractor_home_url, notice: "Contractor updated."
+      redirect_to home_contractors_url, notice: "Contractor updated."
     else
       render :edit
     end
   end
 
   def update_status
-  @application = Application.find(params[:id])
-
-  if @application.update(status: params[:status])
-    TaskMailer.status_updated_email(@application).deliver_now
-    redirect_to contractor_applications_path, notice: "Application #{params[:status].capitalize}!"
-  else
-    redirect_to contractor_applications_path, alert: "Failed to update application."
-  end
+    @application = Application.find(params[:id])
+    if @application.update(status: params[:status])
+      TaskMailer.status_updated_email(@application).deliver_now
+      redirect_to applications_contractors_path, notice: "Application #{params[:status].capitalize}!"
+    else
+      redirect_to applications_contractors_path, alert: "Failed to update application."
+    end
 end
-
 
   def destroy
     @contractor.destroy
-    redirect_to contractor_home_url, notice: "Contractor deleted."
+    redirect_to home_contractors_url, notice: "Contractor deleted."
   end
 
   private
-
   def set_contractor
     @contractor = User.find(params[:id])
   end

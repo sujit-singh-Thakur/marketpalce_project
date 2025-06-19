@@ -8,8 +8,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: exception.message
   end
 
-  # before_action :configure_permitted_parameters, if: :devise_controller?
-
   protected
 
   def configure_permitted_parameters
@@ -22,9 +20,9 @@ class ApplicationController < ActionController::Base
     when "admin"
     admin_root_path
     when "contractor"
-      contractor_home_path
+      home_contractors_path
     when "worker"
-      worker_home_path
+      home_workers_path
     else
       root_path
     end

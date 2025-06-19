@@ -1,49 +1,39 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: "users#home"
+  root to: "homes#home"
 
 mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
 
+resources :workers do 
+  collection do 
+    get :home
+    get :my_applications
+  end
+end
 
-get  "worker/home",               to: "workers#home",            as: "worker_home"
-get  "worker/task/:id/apply",     to: "workers#apply",           as: "worker_apply_task"
-post "worker/task/:id/apply",     to: "workers#create_application", as: "create_worker_application"
+ 
+resources :contractors do 
+  collection do
+    get :home
+    get :applications
+  end
+end
 
-
-get "contractor/tasks/:id/applied_workers", to: "contractors#applied_workers", as: "contractor_applied_workers"
-
-patch "/contractor/applications/:id/status", to: "contractors#update_status", as: "update_application_status"
-
-get "contractor/applications", to: "contractors#applications", as: :contractor_applications
-get "contractor/:id", to: "contractors#show", as: :contractor_view
-
-get "worker/my_applications", to: "workers#my_applications", as: :worker_my_applications
-
-
-resources :tasks, only: [ :index, :new, :create, :edit, :update, :destroy ]
-
+resources :tasks do  
+  collection do 
+    get :search
+  end
   get "/new_task" => "tasks#new"
   post "/new_task" => "tasks#create"
-
-
-
+ 
   get "/new_application" => "application1s#new"
   post "/new_application" => "application1s#create"
+end
 
 
-
-    resources :contractors do
-      get "applications", on: :collection
-    end
-    resources :contractors, only: [ :index, :show, :edit, :update, :destroy ]
-    resources :workers, only: [ :index, :show, :edit, :update, :destroy ]
-
-    resources :categories, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
-
-
-  namespace :admin do
+namespace :admin do
   root to: "dashboard#index"
 
   resources :users, only: [ :index, :edit, :update, :show, :destroy ]
@@ -51,13 +41,16 @@ resources :tasks, only: [ :index, :new, :create, :edit, :update, :destroy ]
   resources :categories, only: [ :index, :show, :edit, :update, :destroy ]
 end
 
+resources :categories, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
+
+resources :workers  
+  get  "worker/task/:id/apply",     to: "workers#apply",           as: "worker_apply_task"
+  post "worker/task/:id/apply",     to: "workers#create_application", as: "create_worker_application"
 
 
-  resources :tasks do
-    get "search", on: :collection
-  end
-
-   get "/contractor_home" => "contractors#home"
+resources :contractors 
+  get "contractor/tasks/:id/applied_workers", to: "contractors#applied_workers", as: "contractor_applied_workers"
+  patch "/contractor/applications/:id/status", to: "contractors#update_status", as: "update_application_status"
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

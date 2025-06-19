@@ -1,14 +1,16 @@
 class Admin::CategoriesController < ApplicationController
-     def index
+  def index
     @categories = Category.all
   end
 
   def new
     @category = Category.new
   end
+
   def show
     @category = Category.find(params[:id])
    end
+
   def edit; end
 
   def create
@@ -30,8 +32,8 @@ class Admin::CategoriesController < ApplicationController
   end
 
   private
-
   def category_params
     params.expect(category: [ :name ])
   end
+  
 end

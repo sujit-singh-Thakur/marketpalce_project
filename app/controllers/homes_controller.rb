@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class HomesController < ApplicationController
   def home
     redirect_to new_user_session_path
   end

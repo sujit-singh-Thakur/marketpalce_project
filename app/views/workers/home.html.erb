@@ -1,13 +1,13 @@
 <br><br>
-<%= link_to "My Applications", worker_my_applications_path %> <br><br>
+<%= link_to "My Applications", my_applications_workers_path %> <br><br>
 
-<%= link_to 'Edit My Profile',   edit_worker_path(current_user) %><br><br>
+<%= link_to 'Edit My Profile', edit_worker_path(current_user) %>
 
 <br><br>
 <h1 style="text-align: center;">All Available Tasks</h1>
 
 <div style="text-align: center; margin-bottom: 20px;">
-  <%= form_with url: worker_home_path, method: :get, local: true do %>
+  <%= form_with url:  home_workers_path, method: :get, local: true do %>
     <label for="category_id"><strong>Search by Category:</strong></label>
     <%= select_tag :category_id,
           options_from_collection_for_select(@categories, :id, :category_name, params[:category_id]),

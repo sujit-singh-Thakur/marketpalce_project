@@ -5,21 +5,21 @@ class WorkersController < ApplicationController
   def my_applications
     @applications = Application.includes(:task).where(worker_id: current_user.id)
   end
-  def home
-  if params[:category_id].present?
-    @all_task = Task.includes(:category, :contractor).where(category_id: params[:category_id])
-  else
-    @all_task = Task.includes(:category, :contractor)
-  end
 
-  @categories = Category.all
-  @applied_task_ids = current_user.applications.pluck(:task_id)
+  def home
+    if params[:category_id].present?
+      @all_task = Task.includes(:category, :contractor).where(category_id: params[:category_id])
+    else
+      @all_task = Task.includes(:category, :contractor)
+    end
+
+    @categories = Category.all
+    @applied_task_ids = current_user.applications.pluck(:task_id)
   end
 
   def apply
     @application = Application.new
   end
-
 
   def create_application
     @application = Application.new(application_params)
@@ -40,7 +40,7 @@ class WorkersController < ApplicationController
 
   def update
     if @worker.update(worker_params)
-      redirect_to worker_home_url, notice: "worker updated."
+      redirect_to home_workers_url, notice: "worker updated."
     else
       render :edit
     end
@@ -49,7 +49,6 @@ class WorkersController < ApplicationController
 
 
   private
-
   def set_task
     @task = Task.find(params[:id])
   end
@@ -57,7 +56,6 @@ class WorkersController < ApplicationController
   def set_page
     @worker = Worker.find(params[:id])
   end
-
 
   def application_params
     params.require(:application).permit(:status, :email, :contact_number, :address)

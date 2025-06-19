@@ -59,5 +59,5 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_02_134313) do
   add_foreign_key "applications", "tasks"
   add_foreign_key "applications", "users", column: "worker_id"
   add_foreign_key "tasks", "categories"
-  add_foreign_key "tasks", "users", column: "contractor_id"/home/developer/marketpalce_project/config/routes.rb
+  add_foreign_key "tasks", "users", column: "contractor_id"
 end
