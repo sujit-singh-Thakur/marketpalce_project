@@ -1,0 +1,7 @@
+<h2>Payment for Task: <%= @application.task.description %></h2>
+<p>Worker: <%= @application.worker.name %></p>
+<p>Amount: ₹1000</p>
+
+<%= form_with url: application_payments_path(@application), method: :post, local: true do %>
+  <%= submit_tag "Proceed to Pay with Stripe", class: "btn btn-primary" %>
+<% end %>

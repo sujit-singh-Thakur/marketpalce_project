@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_02_134313) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_20_112006) do
   create_table "applications", force: :cascade do |t|
     t.integer "task_id", null: false
     t.integer "worker_id"
@@ -28,6 +28,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_02_134313) do
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer "amount"
+    t.string "status"
+    t.integer "application_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_id"], name: "index_payments_on_application_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -58,6 +67,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_02_134313) do
 
   add_foreign_key "applications", "tasks"
   add_foreign_key "applications", "users", column: "worker_id"
+  add_foreign_key "payments", "applications"
   add_foreign_key "tasks", "categories"
   add_foreign_key "tasks", "users", column: "contractor_id"
 end

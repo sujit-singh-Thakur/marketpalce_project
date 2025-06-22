@@ -5,6 +5,14 @@ Rails.application.routes.draw do
 
 mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
+resources :applications, only: [] do
+  resources :payments, only: [:new, :create]
+end
+
+get '/payments/success', to: 'payments#success'
+
+post '/stripe_webhooks', to: 'stripe_webhooks#create'
+
 
 resources :workers do 
   collection do 
