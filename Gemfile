@@ -80,3 +80,5 @@ gem "rubocop"
 gem "tailwindcss-ruby", "~> 4.1"
 
 gem 'stripe'
+gem 'twilio-ruby'
+
