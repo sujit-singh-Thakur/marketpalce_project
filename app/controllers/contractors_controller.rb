@@ -1,5 +1,5 @@
 class ContractorsController < ApplicationController
- before_action :set_contractor, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_contractor, only: [ :show, :edit, :update, :destroy ]
 
   def applications
     @applications = Application.includes(:task, :worker).where(tasks: { contractor_id: current_user.id })
@@ -12,7 +12,7 @@ class ContractorsController < ApplicationController
     redirect_to root_path, alert: "Access denied."
      end
   end
-
+ 
   def show
     @contractor = User.find(params[:id])
   end
@@ -36,7 +36,7 @@ class ContractorsController < ApplicationController
     else
       redirect_to applications_contractors_path, alert: "Failed to update application."
     end
-end
+  end
 
   def destroy
     @contractor.destroy

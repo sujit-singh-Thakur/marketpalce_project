@@ -1,7 +1,7 @@
 class Application < ApplicationRecord
   belongs_to :worker, class_name: "User"
   belongs_to :task
-  has_many :payments
+  has_many :payments, dependent: :destroy
 
 
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }

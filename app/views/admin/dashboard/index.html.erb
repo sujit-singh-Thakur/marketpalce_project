@@ -1,12 +1,54 @@
+<!-- Required for mobile responsiveness -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Responsive Container -->
+<div style="display: flex; flex-wrap: wrap; min-height: 100vh; font-family: Arial, sans-serif;">
 
-<h1>Admin Dashboard</h1>
-<p>Total Users: <%= User.all.count%></p>
-<p>Total Tasks: <%= Task.all.count%></p>
-<p>Total Categories: <%= Category.all.count %></p>
+  <!-- Sidebar -->
+  <div style="flex: 1 1 250px; max-width: 250px; background-color: #343a40; color: white; padding: 20px; box-sizing: border-box;">
+    <h2 style="color: white; text-align: center;">Admin Panel</h2>
+    <hr style="border-color: #555;">
 
-<ul>
-  <li><%= link_to 'Manage Users', admin_users_path %></li>
-  <li><%= link_to 'Manage Tasks', admin_tasks_path %></li>
-  <li><%= link_to 'Manage Categories', admin_categories_path %></li>
-</ul>
+    <nav style="display: flex; flex-direction: column; gap: 15px; margin-top: 30px;">
+      <%= link_to "Manage Users", admin_users_path, style: "color: white; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #007bff;" %>
+      <%= link_to "Manage Tasks", admin_tasks_path, style: "color: white; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #28a745;" %>
+      <%= link_to "Manage Categories", admin_categories_path, style: "color: white; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #ffc107;" %>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div style="flex: 1 1 calc(100% - 250px); padding: 30px; background-color: #f8f9fa; position: relative; box-sizing: border-box;">
+
+    <!-- Logout Button -->
+    <div style="text-align: right; margin-bottom: 20px;">
+      <%= button_to 'Logout', destroy_user_session_path, method: :delete,
+          style: "color: white; background-color: #dc3545; padding: 8px 16px; text-decoration: none; border-radius: 5px;" %>
+    </div>
+
+    <!-- Header -->
+    <h1 style="text-align: center; margin-bottom: 40px; color: #343a40;">Admin Dashboard</h1>
+
+    <!-- Stats Cards -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+
+      <!-- Total Users -->
+      <div style="flex: 1 1 250px; max-width: 150px; background-color: #007bff; color: white; padding: 20px; border-radius: 10px; text-align: center;">
+        <h3>Total Users</h3>
+        <p style="font-size: 24px; font-weight: bold;"><%= User.count %></p>
+      </div>
+
+      <!-- Total Tasks -->
+      <div style="flex: 1 1 250px; max-width: 150px; background-color: #28a745; color: white; padding: 20px; border-radius: 10px; text-align: center;">
+        <h3>Total Tasks</h3>
+        <p style="font-size: 24px; font-weight: bold;"><%= Task.count %></p>
+      </div>
+
+      <!-- Total Categories -->
+      <div style="flex: 1 1 250px; max-width: 150px; background-color: #ffc107; color: black; padding: 20px; border-radius: 10px; text-align: center;">
+        <h3>Total Categories</h3>
+        <p style="font-size: 24px; font-weight: bold;"><%= Category.count %></p>
+      </div>
+
+    </div>
+  </div>
+</div>

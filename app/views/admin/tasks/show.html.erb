@@ -1,9 +1,21 @@
-<h1>Task Details</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<p><strong>Description:</strong> <%= @task.description %></p>
-<p><strong>Contact Info:</strong> <%= @task.contact_info %></p>
-<p><strong>Contractor:</strong> <%= @task.contractor.name if @task.contractor %></p>
-<p><strong>Category:</strong> <%= @task.category.category_name if @task.category %></p>
+<div style="max-width: 600px; margin: 40px auto; padding: 30px; background-color: #f8f9fa; font-family: Arial, sans-serif; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
 
-<%= link_to 'Edit', edit_admin_task_path(@task) %> |
-<%= link_to 'Back', admin_tasks_path %>
+  <h1 style="text-align: center; margin-bottom: 30px; color: #343a40;">Task Details</h1>
+
+  <p style="margin-bottom: 15px; font-size: 16px;"><strong>Description:</strong> <%= @task.description %></p>
+  <p style="margin-bottom: 15px; font-size: 16px;"><strong>Contact Info:</strong> <%= @task.contact_info %></p>
+  <p style="margin-bottom: 15px; font-size: 16px;"><strong>Contractor:</strong> <%= @task.contractor.name if @task.contractor %></p>
+  <p style="margin-bottom: 15px; font-size: 16px;"><strong>Category:</strong> <%= @task.category.category_name if @task.category %></p>
+
+  <!-- Action Buttons -->
+  <div style="display: flex; justify-content: center; gap: 15px; margin-top: 30px; flex-wrap: wrap;">
+    <%= link_to 'Edit', edit_admin_task_path(@task),
+        style: "background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;" %>
+
+    <%= link_to 'Back', admin_tasks_path,
+        style: "background-color: #6c757d; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;" %>
+  </div>
+
+</div>

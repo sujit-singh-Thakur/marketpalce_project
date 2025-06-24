@@ -4,15 +4,15 @@ class PaymentsController < ApplicationController
   def index
      @payments = Payment.includes(:application).where(applications: { task: { contractor_id: current_user.id } })
   end
+ 
+  def new
+     @application = Application.find(params[:application_id])
+     @payment = Payment.new
+  end
 
-   def new
-        @application = Application.find(params[:application_id])
-        @payment = Payment.new
-    end
-
-    def create
+  def create
       @application = Application.find(params[:application_id])
-      @amount = 5000 
+      @amount = 100000
 
      session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],

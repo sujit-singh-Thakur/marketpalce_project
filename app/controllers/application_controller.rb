@@ -33,11 +33,11 @@ class ApplicationController < ActionController::Base
   end
 
 
-def after_sign_up_path_for(resource)
-  if type == "contractor"
-  contractor_home_path(resource)
-  elsif type == "worker"
-      worker_home_url(resource)
+  def after_sign_up_path_for(resource)
+    if type == "contractor"
+    contractor_home_path(resource)
+    elsif type == "worker"
+        worker_home_url(resource)
+    end
   end
-end
 end

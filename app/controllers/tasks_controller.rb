@@ -13,7 +13,7 @@ class TasksController < ApplicationController
     end
   end
 
- def show
+  def show
   end
 
   def new
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(param_task)
-      redirect_to contractor_home_url, notice: "Task updated successfully."
+      redirect_to home_contractors_url, notice: "Task updated successfully."
     else
       render :edit
     end

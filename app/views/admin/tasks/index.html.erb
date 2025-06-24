@@ -1,32 +1,47 @@
+<div style="padding: 20px; font-family: Arial, sans-serif; background-color: #f8f9fa; min-height: 100vh;">
+  <!-- Create Task Button -->
+  <div style="margin-bottom: 20px; text-align: center;">
+    <%= link_to "Create New Task", new_task_url,
+      style: "padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; display: inline-block;" %>
+  </div>
 
-<%= link_to  "create new task" , new_task_url %>
-<br>
-<h1>All Tasks</h1>
-<table>   
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Contractor</th>
-      <th>Category</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.description %></td>
-        <td><%= task.contractor.name if task.contractor %></td>
-       
-         <td><%= task.category.category_name if task.contractor %></td>
-        
-        <td>
-          <%= link_to 'Show', admin_task_path(task) %> |
-          <%= link_to 'Edit', edit_admin_task_path(task) %> |
-         <td><%= button_to 'Delete', admin_task_url(task.id), method: :delete, :onclick => "return confirm('Are you sure you want to delete this task?')" %> </td>
+  <h1 style="text-align: center; margin-bottom: 30px; font-size: 24px;">All Tasks</h1>
 
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <!-- Responsive Table Wrapper -->
+  <div style="overflow-x: auto; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+    <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+      <thead style="background-color: #343a40; color: white;">
+        <tr>
+          <th style="padding: 12px; text-align: left;">Description</th>
+          <th style="padding: 12px; text-align: left;">Contractor</th>
+          <th style="padding: 12px; text-align: left;">Category</th>
+          <th style="padding: 12px; text-align: left;">Actions</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr style="border-bottom: 1px solid #e0e0e0;">
+            <td style="padding: 12px;"><%= task.description %></td>
+            <td style="padding: 12px;"><%= task.contractor&.name || "N/A" %></td>
+            <td style="padding: 12px;"><%= task.category&.category_name || "N/A" %></td>
+            <td style="padding: 12px;">
+              <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <%= link_to 'Show', admin_task_path(task),
+                    style: "padding: 6px 10px; background-color: #17a2b8; color: white; text-decoration: none; border-radius: 4px;" %>
+
+                <%= link_to 'Edit', edit_admin_task_path(task),
+                    style: "padding: 6px 10px; background-color: #ffc107; color: black; text-decoration: none; border-radius: 4px;" %>
+
+                <%= button_to 'Delete', admin_task_path(task), method: :delete,
+                    data: { confirm: 'Are you sure you want to delete this task?' },
+                    form: { style: 'display:inline' },
+                    style: "padding: 6px 10px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

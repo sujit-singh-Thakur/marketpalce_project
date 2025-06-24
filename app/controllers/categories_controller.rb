@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
   end
-
+ 
   def show
     @category = Category.find(params[:id])
   end
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
       redirect_to categories_path, notice: "Category created."
     else
       render :new
-    end
+    end 
   end
 
   def update
@@ -31,7 +31,7 @@ class CategoriesController < ApplicationController
     else
      render :edit
     end
-  end
+  end 
 
   def destroy
      @category = Category.find(params[:id])

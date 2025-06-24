@@ -1,25 +1,36 @@
-<h1>Edit Category</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<%= form_with model: @category, local: true do |form| %>
-  <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
-      <ul>
-        <% @category.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div style="max-width: 500px; margin: 40px auto; font-family: Arial, sans-serif; padding: 20px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+
+  <h1 style="text-align: center; margin-bottom: 30px; color: #343a40;">Edit Category</h1>
+
+  <%= form_with model: @category, local: true do |form| %>
+    <% if @category.errors.any? %>
+      <div style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
+        <h3 style="margin-top: 0;"><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h3>
+        <ul style="margin-left: 20px;">
+          <% @category.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Category Name Field -->
+    <div style="margin-bottom: 20px;">
+      <%= form.label :category_name, style: "display: block; margin-bottom: 8px; font-weight: bold; color: #333;" %>
+      <%= form.text_field :category_name, style: "width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 5px;" %>
+    </div>
+
+    <!-- Submit Button -->
+    <div style="text-align: center;">
+      <%= form.submit "Update Category", style: "background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :category_name %>
-    <%= form.text_field :category_name %>
+  <!-- Back Button -->
+  <div style="text-align: center; margin-top: 20px;">
+    <%= link_to 'Back', categories_path, style: "color: white; background-color: #6c757d; padding: 8px 16px; text-decoration: none; border-radius: 5px;" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Update Category" %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', categories_path %>
+</div>
