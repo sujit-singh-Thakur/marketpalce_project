@@ -1,4 +1,3 @@
-# app/services/sms_sender.rb
 class SmsSender
   def self.send_sms(to:, body:)
     client = Twilio::REST::Client.new(

@@ -69,12 +69,11 @@ gem "devise-jwt"
 end
 
 
-  gem "letter_opener_web"
+gem "letter_opener_web"
 
-  gem "cancancan"
-  gem "byebug"
+gem "cancancan"
+gem "byebug"
 
-gem "tailwindcss-rails"
 gem "rubocop"
 
 gem "tailwindcss-ruby", "~> 4.1"

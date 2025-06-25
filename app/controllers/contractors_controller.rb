@@ -27,31 +27,19 @@ class ContractorsController < ApplicationController
       render :edit
     end
   end
-
-  # def update_status
-  #   @application = Application.find(params[:id])
-  #   if @application.update(status: params[:status])
-  #     TaskMailer.status_updated_email(@application).deliver_now
-  #     redirect_to applications_contractors_path, notice: "Application #{params[:status].capitalize}!"
-  #   else
-  #     redirect_to applications_contractors_path, alert: "Failed to update application."
-  #   end
-  # end
   def update_status
     @application = Application.find(params[:id])
   
     if @application.update(status: params[:status])
       TaskMailer.status_updated_email(@application).deliver_now
   
-      # SMS content
       message =
         if params[:status] == "accepted"
-          "Congratulations! Your application for the task '#{@application.task.description}' has been accepted."
+          "Congratulations Your application for the task '#{@application.task.description}' has been accepted."
         else
           "Sorry Your application for the task '#{@application.task.description}' has been rejected."
         end
   
-      # Send SMS to worker's contact number
       SmsSender.send_sms(to: @application.worker.contact, body: message)
   
       redirect_to applications_contractors_path, notice: "Application #{params[:status].capitalize}!"

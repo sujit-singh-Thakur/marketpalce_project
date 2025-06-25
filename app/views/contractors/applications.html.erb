@@ -7,7 +7,19 @@
     <p><strong>Worker:</strong> <%= app.worker.name %></p>
     <p><strong>Task:</strong> <%= app.task.description %></p>
     <p><strong>Status:</strong> <%= app.status.presence || 'Pending' %></p>
+
+
+    <% if app.resume.attached? %>
+      <p><strong>Resume:</strong> <%= link_to "Download Resume", url_for(app.resume), target: "_blank" %></p>
+    <% else %>
+      <p style="color: red;"><strong>No Resume Uploaded</strong></p>
+    <% end %>
+    
+    <% if app.payments.present?%>
+    <p style="color: green; font-weight:bold;"> worker has been paid for this task <p>
+      <%else%>
     <%= link_to "Pay ₹1000", new_application_payment_path(app), class: "btn btn-success" %>
+    <%end%>
 
    <tr>
     <% unless app.status.in?(%w[accepted rejected]) %>
@@ -23,3 +35,4 @@
 
   </div>
 <% end %>
+
