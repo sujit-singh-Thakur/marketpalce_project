@@ -5,28 +5,28 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-  resources :workers do 
-    collection do 
+  resources :workers do
+    collection do
       get :home
       get :my_applications
     end
   end
 
- 
-  resources :contractors do 
+
+  resources :contractors do
     collection do
       get :home
       get :applications
     end
   end
 
-  resources :tasks do  
-    collection do 
+  resources :tasks do
+    collection do
       get :search
     end
     get "/new_task" => "tasks#new"
     post "/new_task" => "tasks#create"
-  
+
     get "/new_application" => "application1s#new"
     post "/new_application" => "application1s#create"
   end
@@ -43,19 +43,19 @@ Rails.application.routes.draw do
 
 
   resources :applications do
-    resources :payments, only: [:new, :create]
+    resources :payments, only: [ :new, :create ]
   end
 
-  get '/payments/success', to: 'payments#success'
+  get "/payments/success", to: "payments#success"
 
-  post '/stripe_webhooks', to: 'stripe_webhooks#create'
+  post "/stripe_webhooks", to: "stripe_webhooks#create"
 
-  resources :workers  
+  resources :workers
     get  "worker/task/:id/apply",     to: "workers#apply",           as: "worker_apply_task"
     post "worker/task/:id/apply",     to: "workers#create_application", as: "create_worker_application"
 
 
-  resources :contractors 
+   resources :contractors
     get "contractor/tasks/:id/applied_workers", to: "contractors#applied_workers", as: "contractor_applied_workers"
     patch "/contractor/applications/:id/status", to: "contractors#update_status", as: "update_application_status"
 

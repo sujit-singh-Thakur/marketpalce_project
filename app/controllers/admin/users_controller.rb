@@ -24,5 +24,4 @@ class Admin::UsersController < ApplicationController
   def require_admin
     redirect_to root_path, alert: "Access denied" unless current_user.is_a?(Admin)
   end
-  
 end

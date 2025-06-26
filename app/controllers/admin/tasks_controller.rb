@@ -32,5 +32,4 @@ class Admin::TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:description, :contact_info, :category_id, :contractor_id)
   end
-  
 end

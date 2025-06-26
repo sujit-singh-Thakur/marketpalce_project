@@ -35,5 +35,4 @@ class Admin::CategoriesController < ApplicationController
   def category_params
     params.expect(category: [ :name ])
   end
-  
 end

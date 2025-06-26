@@ -44,7 +44,7 @@
     <% if @all_task.any? %>
       <% @all_task.each do |task| %>
         <div style="background-color: white; border: 1px solid #dee2e6; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-          <h2 style="margin-top: 0; color: #007bff;"><%= task.description %></h2>
+          <h2 style="margin-top: 0;"><%= task.description %></h2>
           <p><strong>Contractor:</strong> <%= task.contractor.name %></p>
           <p><strong>Category:</strong> <%= task.category.category_name %></p>
 

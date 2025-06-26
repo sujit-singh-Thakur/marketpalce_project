@@ -5,14 +5,6 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def search
-    @tasks = Task.all
-    if params[:category].present?
-      @tasks = @tasks.where(category_id: params[:category])
-      redirect_to search_category_url
-    end
-  end
-
   def show
   end
 
@@ -26,7 +18,7 @@ class TasksController < ApplicationController
   def update
     if @task.update(param_task)
       redirect_to home_contractors_url, notice: "Task updated successfully."
-    else
+     else
       render :edit
     end
   end
@@ -40,7 +32,7 @@ class TasksController < ApplicationController
     )
     if @task.save
       redirect_to home_contractors_url, notice: "Task created successfully."
-    else
+     else
       render :new
     end
   end

@@ -14,7 +14,7 @@ class PaymentsController < ApplicationController
       @application = Application.find(params[:application_id])
       @amount = 100000
 
-     session = Stripe::Checkout::Session.create(
+      session = Stripe::Checkout::Session.create(
         payment_method_types: ['card'],
         line_items: [{
         price_data: {
@@ -32,9 +32,8 @@ class PaymentsController < ApplicationController
         metadata: {
         application_id: @application.id
         }
-    )
-
-    redirect_to session.url, allow_other_host: true
+      )
+      redirect_to session.url, allow_other_host: true
   end
 
   def success
@@ -43,11 +42,10 @@ class PaymentsController < ApplicationController
         payment_intent = Stripe::PaymentIntent.retrieve(session.payment_intent)
 
       Payment.create!(
-      amount: payment_intent.amount,
-      status: payment_intent.status,
-      application_id: application_id
+        amount: payment_intent.amount,
+        status: payment_intent.status,
+        application_id: application_id
       )
-
      redirect_to applications_contractors_path, notice: "Payment successful!"
   end
 end

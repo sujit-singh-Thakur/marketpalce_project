@@ -8,7 +8,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(resource)
-    
     if resource.type.downcase == "contractor"
       contractor_home_path
     elsif resource.type.downcase == "worker"

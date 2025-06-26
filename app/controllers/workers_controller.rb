@@ -9,7 +9,7 @@ class WorkersController < ApplicationController
   def home
     if params[:category_id].present?
       @all_task = Task.includes(:category, :contractor).where(category_id: params[:category_id])
-    else
+     else
       @all_task = Task.includes(:category, :contractor)
     end
 
@@ -20,7 +20,7 @@ class WorkersController < ApplicationController
   def apply
     @application = Application.new
   end
-
+ 
   def create_application
     @application = Application.new(application_params)
     @application.worker_id = current_user.id
@@ -28,12 +28,12 @@ class WorkersController < ApplicationController
     @application.email = current_user.email
     if @application.save
       TaskMailer.worker_applied_email(@application).deliver_now
-      
+
       redirect_to "http://localhost:3000/letter_opener", allow_other_host: true, notice: "Application submitted!"
-    else
+     else
       render :apply, alert: "Something went wrong."
     end
-  end
+  end 
 
   def edit
   end
@@ -41,11 +41,10 @@ class WorkersController < ApplicationController
   def update
     if @worker.update(worker_params)
       redirect_to home_workers_url, notice: "worker updated."
-    else
+     else
       render :edit
     end
   end
-
 
   private
   def set_task
@@ -57,7 +56,7 @@ class WorkersController < ApplicationController
   end
 
   def application_params
-    params.require(:application).permit(:status, :email, :contact_number, :address,:resume)
+    params.require(:application).permit(:status, :email, :contact_number, :address, :resume)
   end
 
   def worker_params

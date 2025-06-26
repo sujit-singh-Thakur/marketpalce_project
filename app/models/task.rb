@@ -5,5 +5,4 @@ class Task < ApplicationRecord
 
   validates :description, :contact_info, presence: true
   validates :contact_info, format: { with: /\A\+91\d{10}\z/, message: "must start with +91 " }
-
 end
