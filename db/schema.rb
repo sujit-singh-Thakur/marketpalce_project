@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_25_072927) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_27_124833) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -46,8 +49,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_25_072927) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
-    t.integer "contact_number"
     t.string "address"
+    t.string "contact_number"
     t.index ["task_id"], name: "index_applications_on_task_id"
     t.index ["worker_id"], name: "index_applications_on_worker_id"
   end
