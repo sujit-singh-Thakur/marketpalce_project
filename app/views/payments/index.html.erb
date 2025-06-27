@@ -1,0 +1,24 @@
+<h2 style="text-align: center; margin-bottom: 20px; font-size: 24px; color: #333;">My Received Payments</h2>
+
+<div style="overflow-x: auto; margin: 0 auto; max-width: 1000px; padding: 0 15px;">
+  <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background-color: #fff;">
+    <thead>
+      <tr style="background-color: #f8f9fa; text-align: left;">
+        <th style="padding: 12px; border-bottom: 2px solid #dee2e6;">Task Description</th>
+        <th style="padding: 12px; border-bottom: 2px solid #dee2e6;">Amount</th>
+        <th style="padding: 12px; border-bottom: 2px solid #dee2e6;">Status</th>
+        <th style="padding: 12px; border-bottom: 2px solid #dee2e6;">Paid At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @payments.each do |payment| %>
+        <tr style="border-bottom: 1px solid #f1f1f1;">
+          <td style="padding: 12px;"><%= payment.application.task.description %></td>
+          <td style="padding: 12px; color: #28a745;"><%= number_to_currency(payment.amount / 100.0, unit: "₹") %></td>
+          <td style="padding: 12px;"><%= payment.status.capitalize %></td>
+          <td style="padding: 12px;"><%= payment.created_at.strftime("%d %b %Y, %I:%M %p") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

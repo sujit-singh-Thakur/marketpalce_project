@@ -15,19 +15,30 @@
       <%= link_to "View All Categories", categories_url,
         style: "color: white; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #28a745;" %>
 
-      <%= link_to "Edit My Profile", edit_contractor_path(current_user),
-        style: "color: white; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #6c757d;" %>
+     <%= link_to "My Payments", all_payments_path,
+        style: "color: white; text-decoration: none; padding: 10px; border-radius: 5px; background-color: #28a745;" %>
+
     </nav>
+  </div>
+
+
+  <div style="position: absolute; top: 20px; right: 30px; z-index: 100;">
+    <div style="position: relative;">
+      
+      <!-- Hamburger icon (3 lines) -->
+      <div onclick="toggleDropdown()" style="cursor: pointer; font-size: 24px; user-select: none;">&#9776;</div>
+      
+      <!-- Dropdown Menu -->
+      <div id="profileDropdown" style="display: none; position: absolute; right: 0; margin-top: 10px; background: white; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-radius: 5px; overflow: hidden; width: 160px;">
+        <%= link_to 'Edit Profile', edit_contractor_path(current_user), style: "display: block; padding: 10px 15px; color: #333; text-decoration: none;" %>
+        <%= button_to 'Logout', destroy_user_session_path, method: :delete, form: { style: "margin: 0;" },
+            style: "display: block; width: 100%; padding: 10px 15px; background: none; border: none; text-align: left; color: #dc3545; cursor: pointer;" %>
+      </div>
+    </div>
   </div>
 
   <!-- Main Content -->
   <div style="flex: 1 1 0; padding: 30px; background-color: #f8f9fa; position: relative; width: 100%;">
-
-    <!-- Logout Button -->
-    <div style="position: absolute; top: 20px; right: 30px;">
-      <%= button_to 'Logout', destroy_user_session_path, method: :delete,
-        style: "color: white; background-color: #dc3545; padding: 8px 16px; text-decoration: none; border-radius: 5px;" %>
-    </div>
 
     <!-- Page Header -->
     <h1 style="text-align: center; margin-bottom: 30px; color: #343a40;">My Tasks</h1>

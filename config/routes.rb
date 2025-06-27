@@ -43,12 +43,13 @@ Rails.application.routes.draw do
 
 
   resources :applications do
-    resources :payments, only: [ :new, :create ]
+    resources :payments, only: [ :new, :create,:index ]
   end
 
   get "/payments/success", to: "payments#success"
+  get "/all_payments" => 'payments#index'
 
-  post "/stripe_webhooks", to: "stripe_webhooks#create"
+  # post "/stripe_webhooks", to: "stripe_webhooks#create"
 
   resources :workers
     get  "worker/task/:id/apply",     to: "workers#apply",           as: "worker_apply_task"

@@ -5,15 +5,23 @@ class Ability
 
   def initialize(user)
     user ||= User.new
-
-    if user.type == "Admin"
+  
+  if user.type == "Admin"
       can :manage, :all
+  
     elsif user.type == "Contractor"
-      can [ :read, :create ], :all
+    can :read, User, id: user.id
+    can :update, User, id: user.id       # only update self
+    cannot :update, User, id: !user.id   # prevent updating others
+
     elsif user.type == "Worker"
-      can [ :read ], :all
-    end
+    can :read, User, id: user.id
+    can :update, User, id: user.id
+    cannot :update, User, id: !user.id
   end
+
+  end
+  
   # Define abilities for the user here. For example:
   #
   #   return unless user.present?

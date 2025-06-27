@@ -41,6 +41,20 @@
   <%= link_to '', new_user_registration_path %> 
   <%= link_to '', new_user_session_path %>
 <% end %>
+<script>
+  function toggleDropdown() {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+
+  // Close dropdown on outside click
+  document.addEventListener('click', function(event) {
+    const dropdown = document.getElementById('profileDropdown');
+    const trigger = event.target.closest('[onclick="toggleDropdown()"]');
+    if (!trigger && dropdown) dropdown.style.display = 'none';
+  });
+</script>
+
 
      
        
