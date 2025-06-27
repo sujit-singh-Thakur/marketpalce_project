@@ -65,7 +65,7 @@ group :test do
   gem "bootsnap", require: false
 
   gem "devise"
-gem "devise-jwt"
+  gem "devise-jwt"
 end
 
 
@@ -80,3 +80,5 @@ gem "tailwindcss-ruby", "~> 4.1"
 
 gem "stripe"
 gem "twilio-ruby"
+gem 'pg'  
+gem 'redis'

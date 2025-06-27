@@ -236,6 +236,7 @@ GEM
     parser (3.3.8.0)
       ast (~> 2.4.1)
       racc
+    pg (1.5.9)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
@@ -295,6 +296,10 @@ GEM
     rdoc (6.14.0)
       erb
       psych (>= 4.0.0)
+    redis (5.4.0)
+      redis-client (>= 0.22.0)
+    redis-client (0.25.0)
+      connection_pool
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
@@ -372,9 +377,6 @@ GEM
       railties (>= 6.0.0)
     stringio (3.1.7)
     stripe (15.2.1)
-    tailwindcss-rails (4.2.3)
-      railties (>= 7.0.0)
-      tailwindcss-ruby (~> 4.0)
     tailwindcss-ruby (4.1.8)
     tailwindcss-ruby (4.1.8-aarch64-linux-gnu)
     tailwindcss-ruby (4.1.8-aarch64-linux-musl)
@@ -444,9 +446,11 @@ DEPENDENCIES
   jbuilder
   kamal
   letter_opener_web
+  pg
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.2)
+  redis
   rubocop
   rubocop-rails-omakase
   selenium-webdriver
@@ -456,7 +460,6 @@ DEPENDENCIES
   sqlite3 (>= 2.1)
   stimulus-rails
   stripe
-  tailwindcss-rails
   tailwindcss-ruby (~> 4.1)
   thruster
   turbo-rails
