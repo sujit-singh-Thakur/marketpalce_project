@@ -90,6 +90,7 @@ Rails.application.configure do
 
   config.require_master_key = true
   config.require_env = true
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
 
 end
