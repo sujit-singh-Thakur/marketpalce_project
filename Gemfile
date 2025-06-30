@@ -5,6 +5,8 @@ gem "rails", "~> 8.0.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use sqlite3 as the database for Active Record
+gem 'pg'  
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -63,11 +65,11 @@ group :test do
 
   gem "bootsnap", require: false
 
-  gem "devise"
-  gem "devise-jwt"
 end
 
 
+gem "devise"
+gem "devise-jwt"
 gem "letter_opener_web"
 
 gem "cancancan"
@@ -79,5 +81,4 @@ gem "tailwindcss-ruby", "~> 4.1"
 
 gem "stripe"
 gem "twilio-ruby"
-gem 'pg'  
 gem 'redis'
