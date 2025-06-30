@@ -23,7 +23,7 @@ default: &default
   adapter: postgresql
   username: developer
   password: iwCCu1nLVn2fzZuOGNAiTOBdDFR9bFmj
-  host: localhost
+  host: dpg-d1h3sdripnbc73bcgbn0-a
 
 
 development:
@@ -88,9 +88,9 @@ production:
 
   primary: &primary_production
     <<: *default
-    database: marketpalce_project_production
-    username: marketpalce_project
-    password: <%= ENV["MARKETPALCE_PROJECT_DATABASE_PASSWORD"] %>
+    database: marketpalce_zzlc
+    username: developer
+    password: <%= ENV["ojzQ2xXgNwZXn6VrjIm8yWTEwjUX7rhe"] %>
   cache:
     <<: *primary_production
     database: marketpalce_project_production_cache
@@ -105,4 +105,4 @@ production:
     migrations_paths: db/cable_migrate
 
      
-    database: <%= ENV['postgresql://developer:iwCCu1nLVn2fzZuOGNAiTOBdDFR9bFmj@dpg-d1h3fnnfte5s73990sbg-a/marketpalce_zzlcL'] %>
+    database: <%= ENV['postgresql://developer:iwCCu1nLVn2fzZuOGNAiTOBdDFR9bFmj@dpg-d1h3fnnfte5s73990sbg-a/marketpalce_zzlc'] %>
