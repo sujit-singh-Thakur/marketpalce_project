@@ -22,8 +22,8 @@ default: &default
 default: &default
   adapter: postgresql
   username: developer
-  password: iwCCu1nLVn2fzZuOGNAiTOBdDFR9bFmj
-  host: dpg-d1h3sdripnbc73bcgbn0-a
+  password: sujit
+  host: localhost
 
 
 development:
