@@ -28,11 +28,7 @@ default: &default
 
 development:
   <<: *default
-  database: <%= ENV["marketpalce_wxyi"] %>
-  username: <%= ENV["developer"] %>
-  password: <%= ENV["UuIZjmcpVAFhY9D6iVz8grEDgG5ke6oB"] %>
-  host: <%= ENV["dpg-d1h9dl2dbo4c73a37tfg-a"] %>
-  port: <%= ENV["5432"] || 5432 %
+  database: marketpalce_zzlc
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -92,10 +88,14 @@ production:
 
   primary: &primary_production
     <<: *default
-    url: <%= ENV["postgresql://developer:UuIZjmcpVAFhY9D6iVz8grEDgG5ke6oB@dpg-d1h9dl2dbo4c73a37tfg-a/marketpalce_wxyi"] %>
-    database: marketpalce_zzlc
-    username: developer
-    password: <%= ENV["ojzQ2xXgNwZXn6VrjIm8yWTEwjUX7rhe"] %>
+    production:
+  url: <%= ENV["postgresql://developer:UuIZjmcpVAFhY9D6iVz8grEDgG5ke6oB@dpg-d1h9dl2dbo4c73a37tfg-a/marketpalce_wxyi"] %>
+
+  database: <%= ENV["marketpalce_wxyi"] %>
+  username: <%= ENV["developer"] %>
+  password: <%= ENV["UuIZjmcpVAFhY9D6iVz8grEDgG5ke6oB"] %>
+  host: <%= ENV["dpg-d1h9dl2dbo4c73a37tfg-a"] %>
+  port: <%= ENV["5432"] || 5432 %>
   cache:
     <<: *primary_production
     database: marketpalce_project_production_cache
