@@ -5,16 +5,13 @@
   <h1 style="text-align: center; margin-bottom: 30px; color: #343a40;">Edit Category</h1>
 
   <%= form_with model: @category, local: true do |form| %>
-    <% if @category.errors.any? %>
-      <div style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
-        <h3 style="margin-top: 0;"><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h3>
-        <ul style="margin-left: 20px;">
-          <% @category.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+   <% if @category.errors.any? %>
+      <ul>
+      <%@category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <%end%>
+      </ul>
+    <%end%>  
 
     <!-- Category Name Field -->
     <div style="margin-bottom: 20px;">

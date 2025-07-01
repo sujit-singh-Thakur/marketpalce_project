@@ -2,9 +2,15 @@ class PaymentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @payments = Payment.joins(application: :task).where(tasks: { contractor_id: current_user.id })
+    if current_user.type == "Contractor"
+      @payments = Payment.joins(application: :task).where(tasks: { contractor_id: current_user.id })
+    elsif current_user.type == "Worker"
+      @payments = Payment.joins(:application).where(applications: { worker_id: current_user.id })
+    else
+      @payments = Payment.none
     end
- 
+  end
+  
   def new
      @application = Application.find(params[:application_id])
      @payment = Payment.new
