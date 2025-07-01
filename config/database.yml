@@ -88,6 +88,7 @@ production:
 
   primary: &primary_production
     <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
     database: marketpalce_zzlc
     username: developer
     password: <%= ENV["ojzQ2xXgNwZXn6VrjIm8yWTEwjUX7rhe"] %>
