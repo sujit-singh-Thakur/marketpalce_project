@@ -19,16 +19,20 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-default: &default
-  adapter: postgresql
-  username: developer
-  password: sujit
-  host: localhost
+# default: &default
+#   adapter: postgresql
+#   username: developer
+#   password: sujit
+#   host: localhost
 
 
 development:
   <<: *default
-  database: marketpalce_zzlc
+  database: <%= ENV["marketpalce_wxyi"] %>
+  username: <%= ENV["developer"] %>
+  password: <%= ENV["UuIZjmcpVAFhY9D6iVz8grEDgG5ke6oB"] %>
+  host: <%= ENV["dpg-d1h9dl2dbo4c73a37tfg-a"] %>
+  port: <%= ENV["5432"] || 5432 %>
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -92,6 +96,7 @@ production:
     database: marketpalce_zzlc
     username: developer
     password: <%= ENV["ojzQ2xXgNwZXn6VrjIm8yWTEwjUX7rhe"] %>
+    
   cache:
     <<: *primary_production
     database: marketpalce_project_production_cache

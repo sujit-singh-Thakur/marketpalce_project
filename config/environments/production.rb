@@ -91,6 +91,9 @@ Rails.application.configure do
   config.require_master_key = true
   config.require_env = true
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.assets.compile = true
+  config.secret_key_base = ENV["SECRET_KEY_BASE"]
+
 
 
 end
