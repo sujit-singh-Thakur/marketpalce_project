@@ -85,25 +85,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-
-  primary: &primary_production
-    <<: *default
-  database: <%= ENV["DB_NAME"] %>
-  username: <%= ENV["DB_USER"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
-  host: <%= ENV["DB_HOST"] %>
-  cache:
-    <<: *primary_production
-    database: marketpalce_project_production_cache
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: marketpalce_project_production_queue
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: marketpalce_project_production_cable
-    migrations_paths: db/cable_migrate
-
-     
-    database: <%= ENV['postgresql://developer:iwCCu1nLVn2fzZuOGNAiTOBdDFR9bFmj@dpg-d1h3fnnfte5s73990sbg-a/marketpalce_zzlc'] %>
+  <<: *default
+  database: my_project_workplace
+  url: <%= ENV["DATABASE_URL"] %>
