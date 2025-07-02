@@ -29,8 +29,8 @@ class WorkersController < ApplicationController
     if @application.save
       TaskMailer.worker_applied_email(@application).deliver_now
 
-      redirect_to "http://localhost:3000/letter_opener", allow_other_host: true, notice: "Application submitted!"
-     else
+      redirect_to home_workers_url, notice: "Application submitted!"
+    else
       render :apply, alert: "Something went wrong."
     end
   end 
@@ -41,7 +41,7 @@ class WorkersController < ApplicationController
   def update
     if @worker.update(worker_params)
       redirect_to home_workers_url, notice: "worker updated."
-     else
+    else
       render :edit
     end
   end
