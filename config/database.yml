@@ -86,5 +86,16 @@ test:
 #
 production:
   <<: *default
-  database: my_project_workplace
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+cable:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+
+queue:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+
+cache:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
