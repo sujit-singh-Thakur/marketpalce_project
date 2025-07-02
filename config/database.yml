@@ -88,14 +88,10 @@ production:
 
   primary: &primary_production
     <<: *default
-    production:
-  url: <%= ENV["postgresql://developer:UuIZjmcpVAFhY9D6iVz8grEDgG5ke6oB@dpg-d1h9dl2dbo4c73a37tfg-a/marketpalce_wxyi"] %>
-
-  database: <%= ENV["marketpalce_wxyi"] %>
-  username: <%= ENV["developer"] %>
-  password: <%= ENV["UuIZjmcpVAFhY9D6iVz8grEDgG5ke6oB"] %>
-  host: <%= ENV["dpg-d1h9dl2dbo4c73a37tfg-a"] %>
-  port: <%= ENV["5432"] || 5432 %>
+  database: <%= ENV["DB_NAME"] %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: <%= ENV["DB_HOST"] %>
   cache:
     <<: *primary_production
     database: marketpalce_project_production_cache
