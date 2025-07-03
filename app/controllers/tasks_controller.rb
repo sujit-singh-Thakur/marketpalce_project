@@ -32,7 +32,7 @@ class TasksController < ApplicationController
     )
     if @task.save
       redirect_to home_contractors_url, notice: "Task created successfully."
-     else
+    else
       render :new
     end
   end

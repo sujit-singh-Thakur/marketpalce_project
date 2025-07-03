@@ -6,11 +6,11 @@ class ContractorsController < ApplicationController
   end
 
   def home
-     if current_user.type == "Contractor"
-        @tasks = current_user.tasks.includes(:category)
-     else
-         redirect_to root_path, alert: "Access denied."
-     end
+    if current_user.type == "Contractor"
+     @tasks = current_user.tasks.includes(:category)
+    else
+      redirect_to root_path, alert: "Access denied."
+    end
   end
 
   def show
@@ -22,9 +22,9 @@ class ContractorsController < ApplicationController
 
   def update
     if @contractor.update(contractor_params)
-       redirect_to home_contractors_url, notice: "Contractor updated."
+      redirect_to home_contractors_url, notice: "Contractor updated."
      else
-       render :edit
+      render :edit
     end
   end
 
@@ -33,11 +33,11 @@ class ContractorsController < ApplicationController
     if @application.update(status: params[:status])
       TaskMailer.status_updated_email(@application).deliver_now
       message =
-        if params[:status] == "accepted"
-          "Congratulations Your application for the task '#{@application.task.description}' has been accepted."
-         else
-          "Sorry Your application for the task '#{@application.task.description}' has been rejected."
-        end
+      if params[:status] == "accepted"
+        "Congratulations Your application for the task '#{@application.task.description}' has been accepted."
+        else
+        "Sorry Your application for the task '#{@application.task.description}' has been rejected."
+      end
       SmsSender.send_sms(to: @application.worker.contact, body: message)
       redirect_to applications_contractors_path, notice: "Application #{params[:status].capitalize}!"
     else

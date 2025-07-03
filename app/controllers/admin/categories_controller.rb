@@ -24,8 +24,8 @@ class Admin::CategoriesController < ApplicationController
 
 
   def destroy
-     @category = Category.find(params[:id])
-     @category.tasks.destroy_all
+    @category = Category.find(params[:id])
+    @category.tasks.destroy_all
     @category.destroy
 
     redirect_to admin_categories_path, notice: "Category deleted."
