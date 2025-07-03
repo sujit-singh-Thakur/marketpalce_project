@@ -9,4 +9,4 @@
 #   end
 
 
-Admin.create(name: "sujit",email: "sujit122@gmail.com", contact: +916655443322,password: 1234567)
+Admin.create(name: "sujit",email: "sujit122@gmail.com", contact: "+916655443322",password: 1234567)
